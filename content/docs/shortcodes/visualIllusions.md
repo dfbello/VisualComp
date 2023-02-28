@@ -1,6 +1,6 @@
-# Buttons
+# Visual Illusions
 
-Buttons are styled links that can lead to local page or external link.
+A continuación las siguientes ilusiones visuales:
 
 ## Example
 
