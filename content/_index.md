@@ -10,5 +10,7 @@ En esta página se encuentran los ejercicios correspondientes a la materia de co
 ## Integrantes
 
 {{< hint info >}}
-1. [David Alexander Zambrano Bohórquez](https://github.com/dzambranob)
+1. David Alexander Zambrano Bohórquez
 {{< /hint >}}
+
+{{< button relref="/Nosotros" >}}Conoce más sobre nosotros{{< /button >}}
