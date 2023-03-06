@@ -22,5 +22,9 @@ Example adapted from [p5.EasyCam](https://github.com/freshfork/p5.EasyCam/blob/m
 
 {{< p5-iframe sketch="/showcase/sketches/moirePattern2.js" width="525" height="575">}}
 
+### Generación de terreno con Perlin Noise
+
+{{< p5-iframe sketch="/showcase/sketches/terrainGenerator.js" width="625" height="625">}}
+
 
 {{< button relref="/" >}}Get Home{{< /button >}}
