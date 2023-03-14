@@ -10,7 +10,9 @@ En esta página se encuentran los ejercicios correspondientes a la materia de co
 ## Integrantes
 
 {{< hint info >}}
+
 1. David Alexander Zambrano Bohórquez
-{{< /hint >}}
+2. Santiago Arias Bareño
+   {{< /hint >}}
 
 {{< button relref="/Nosotros" >}}Conoce más sobre nosotros{{< /button >}}
