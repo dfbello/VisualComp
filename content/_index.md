@@ -11,8 +11,9 @@ En esta página se encuentran los ejercicios correspondientes a la materia de co
 
 {{< hint info >}}
 
-1. David Alexander Zambrano Bohórquez
-2. Santiago Arias Bareño
+* David Alexander Zambrano Bohórquez
+* Santiago Arias Bareño
+* Diego Fernando Bello López
    {{< /hint >}}
 
 {{< button relref="/Nosotros" >}}Conoce más sobre nosotros{{< /button >}}
