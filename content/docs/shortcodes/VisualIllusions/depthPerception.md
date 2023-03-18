@@ -1,3 +1,7 @@
+---
+weight: 4
+---
+
 # Depth perception
 
 ## Excercises

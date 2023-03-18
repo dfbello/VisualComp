@@ -5,7 +5,20 @@ menu:
     weight: 1
 title: Nosotros
 ---
-## Integrantes
-El grupo está conformado por
+# Integrantes
+El grupo de trabajo que desarrolló este trabajo se encuentra compuesto por:
 
-{{<section>}}
+## **Santiago Arias Bareño**
+
+Estudiante de Ingeniería de Sistemas y Computación @ Universidad Nacional de Colombia
+
+## **Diego Fernando Bello López**
+
+Estudiante de Ingeniería de Sistemas y Computación @ Universidad Nacional de Colombia.
+Amante de muchas cosas, entre ellas de entender cómo funciona el mundo y del pote de salsa que dan en Little Caesars.
+
+## **David Alexander Zambrano Bohórquez**
+
+Estudiante de Ingeniería de Sistemas y Computación de la Universidad Nacional de Colombia.
+Intereseado en temas de desarrollo de software, sobre todo en la parte de backend y la seguridad de la información. <br>
+Visita mi [Github](https://github.com/dzambranob)

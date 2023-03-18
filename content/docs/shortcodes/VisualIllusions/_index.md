@@ -1,5 +1,6 @@
 ---
 bookCollapseSection: true
+weight: 2
 ---
 
 # Introducción
@@ -11,6 +12,10 @@ Aqui se encuentran varias ilusiones visuales
 ## Ilusión con líneas
 
 {{< p5-iframe sketch="/showcase/sketches/linesVisualIllusions.js" width="525" height="525" >}}
+
+## Ilusión de colores
+
+{{< p5-iframe sketch="/showcase/sketches/dithering.js" width="625" height="625">}}
 
 ### Ilusión yellow-inducing
 
