@@ -5,15 +5,21 @@ type: docs
 
 # Computación visual
 
-En esta página se encuentran los ejercicios correspondientes a la materia de computación visual de la Universidad Nacional de Colombia
+En esta página se encuentran los ejercicios correspondientes a la materia de computación visual de la Universidad Nacional de Colombia para el semestre 2023-1
 
 ## Integrantes
 
 {{< hint info >}}
 
-* David Alexander Zambrano Bohórquez
 * Santiago Arias Bareño
 * Diego Fernando Bello López
-   {{< /hint >}}
+* David Alexander Zambrano Bohórquez
+{{< /hint >}}
+
+## Docente
+
+{{< hint info >}}
+* Jean Pierre Charalambos
+{{< /hint >}}
 
 {{< button relref="/Nosotros" >}}Conoce más sobre nosotros{{< /button >}}
