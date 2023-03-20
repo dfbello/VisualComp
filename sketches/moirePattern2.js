@@ -7,7 +7,7 @@ function setup() {
   createCanvas(500, 550);
   noFill();
   stroke(255);
-  spacingSlider = createSlider(2, 10, 5);
+  spacingSlider = createSlider(5, 15, 10);
   spacingSlider.position(10, 10);
   spacingSlider.style("width", "80px");
   speedSlider = createSlider(0, 10, 3);
