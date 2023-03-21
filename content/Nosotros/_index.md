@@ -15,7 +15,7 @@ Estudiante de Ingeniería de Sistemas y Computación @ Universidad Nacional de C
 ## **Diego Fernando Bello López**
 
 Estudiante de Ingeniería de Sistemas y Computación @ Universidad Nacional de Colombia.
-Amante de muchas cosas, entre ellas de entender cómo funciona el mundo y del pote de salsa que dan en Little Caesars.
+Amante de muchas cosas, entre ellas de entender cómo funciona el mundo y del pote de salsa que dan en Little Caesars. [Github](https://github.com/dfbello)
 
 ## **David Alexander Zambrano Bohórquez**
 
