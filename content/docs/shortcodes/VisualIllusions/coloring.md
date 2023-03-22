@@ -14,9 +14,11 @@ En computacion grafica es util entonces representar un conjunto determinado de c
 
 RGB por ejemplo, es un modelo aditivo donde se empieza con negro (ausencia de luz) y al sumar distintas cantidades de rojo, verde y azul se producen diferentes colores, por esta razon los modelos aditivos son utilzados en pantallas, donde el "lienzo" es negro. Por el contrario, CMY es un modelo sustractivo, donde se empieza con blanco (luz) y se mezclan cantidades de cian, magenta y amarillo para absorber diferentes longitudes de onda y asi producir el color deseado, esto hace a los modelos sustractivos utiles en la impresion a color.
 
-<img src= "/resources/_gen/images/rgb-colores.png" >
+<p align="center">
+    <img src= "https://imborrable.com/wp-content/uploads/2022/10/rgb-colores.png" width=500>
+</p>
 
-Al analizar estos dos modelos de color es facil descubrir que la mezcla de unos pocos colores nos permiten crear una gama mucho mas amplia, a estos colores primitivos se les conoce como colores primarios, en modelos aditivos son el rojo, el varde y el azul (RGB) y en sustractivos el cian, el magenta y el amarillo (CMY). Sin embargo los colores primarios no son una propiedad fundamental de la luz, sino un concepto biologico que se basa en la respuesta del ojo humano a dicho fenomeno.
+Al analizar estos dos modelos de color es facil descubrir que la mezcla de solo unos pocos colores nos permiten crear una gama mucho mas amplia, a estos colores primitivos se les conoce como colores primarios, en modelos aditivos son el rojo, el varde y el azul (RGB) y en sustractivos el cian, el magenta y el amarillo (CMY). Los colores primarios no son una propiedad fundamental de la luz, sino un concepto biologico que se basa en la respuesta del ojo humano a dicho fenomeno.
 
 ### **Modelo HSL** (Hue, Saturation, Lightness)
 
@@ -46,23 +48,6 @@ El modelo HSL es una transformacion no lineal del RGB, por tanto tambien es un m
 <!--1-->{{< /tab >}}
 
 {{< /tabs >}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
