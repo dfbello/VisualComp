@@ -2,7 +2,7 @@
 weight: 2
 ---
 
-# Match bands
+# Mach bands
 
 ## Intro and background
 
