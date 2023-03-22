@@ -129,7 +129,7 @@ function selection(value) {
 }
 
 function brillo(more){
-  newimg.loadPixels();
+  img.loadPixels();
   for (var x = 0; x < img.width; x++) {
     for (var y = 0; y < img.height; y++) {
       var index =  (y * img.width + x) * 4;
