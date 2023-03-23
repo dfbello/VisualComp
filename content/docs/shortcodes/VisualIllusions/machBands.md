@@ -34,4 +34,3 @@ Se puede concluir de este trabajo que
 
 Como trabajo futuro se espera poder mejorar el coloreado del terreno, de manera que se vea mucho más suave y natural; además de agregarle más opciones de visualización como lo puede ser cambiar la orientación de la cámara y que el avance del terreno sea acorde a este movimiento o que se pueda bajar o subir la vista sobre el mismo.
 
-## Conclusions and future work
