@@ -17,6 +17,10 @@ Estudiante de Ingeniería de Sistemas y Computación @ Universidad Nacional de C
 Estudiante de Ingeniería de Sistemas y Computación @ Universidad Nacional de Colombia.
 Amante de muchas cosas, entre ellas de entender cómo funciona el mundo y del pote de salsa que dan en Little Caesars. [Github](https://github.com/dfbello)
 
+Mi aspiración con el curso consiste en alimentar mi curiosidad con los temas propuestos y saciar esa curiosidad con el trabajo que realice durante el curso.
+
+
+
 ## **David Alexander Zambrano Bohórquez**
 
 Estudiante de Ingeniería de Sistemas y Computación de la Universidad Nacional de Colombia.

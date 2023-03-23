@@ -16,10 +16,11 @@ En esta página se encuentran los ejercicios correspondientes a la materia de co
 * David Alexander Zambrano Bohórquez
 {{< /hint >}}
 
+{{< button relref="/Nosotros" >}}Conoce más sobre nosotros{{< /button >}}
+
 ## Docente
 
 {{< hint info >}}
 * Jean Pierre Charalambos
 {{< /hint >}}
 
-{{< button relref="/Nosotros" >}}Conoce más sobre nosotros{{< /button >}}
