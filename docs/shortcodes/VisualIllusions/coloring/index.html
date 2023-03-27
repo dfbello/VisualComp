@@ -1,13 +1,21 @@
-<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content=" Coloring # Intro and Background # Code and results # Color models # Conclusions and future work # "><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content=" Coloring # Intro and Background # Code and results # Color models # Conclusions and future work # "><meta property="og:type" content="article"><meta property="og:url" content="https://visualcgroup.github.io/showcase/docs/shortcodes/VisualIllusions/coloring/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-03-19T21:16:57-05:00"><title>Coloring | Computación Visual</title><link rel=manifest href=/showcase/manifest.json><link rel=icon href=/showcase/favicon.png type=image/x-icon><link rel=stylesheet href=/showcase/book.min.a82d7e77ceb134d151c4d7e381eeb30623fbd5a524d58c584d8716ecec0205bd.css integrity="sha256-qC1+d86xNNFRxNfjge6zBiP71aUk1YxYTYcW7OwCBb0=" crossorigin=anonymous><script defer src=/showcase/flexsearch.min.js></script>
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Coloring # Intro and Background # El color es una percepción visual generada en el cerebro, producto de interpretar las señales nerviosas enviadas por los fotorreceptores en el ojo. Los cuerpos iluminados absorben una parte de las ondas electromagneticas y reflejan el resto, que son captadas por el ojo e interpretadas como los diferentes colores dentro de la parte visible del espectro electromagnetico.
+Modelos de color # En computacion grafica es util entonces representar un conjunto determinado de colores, dicha tarea es posible mediante ciertos modelos matematicos, llamados modelos de color."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="Coloring # Intro and Background # El color es una percepción visual generada en el cerebro, producto de interpretar las señales nerviosas enviadas por los fotorreceptores en el ojo. Los cuerpos iluminados absorben una parte de las ondas electromagneticas y reflejan el resto, que son captadas por el ojo e interpretadas como los diferentes colores dentro de la parte visible del espectro electromagnetico.
+Modelos de color # En computacion grafica es util entonces representar un conjunto determinado de colores, dicha tarea es posible mediante ciertos modelos matematicos, llamados modelos de color."><meta property="og:type" content="article"><meta property="og:url" content="https://visualcgroup.github.io/showcase/docs/shortcodes/VisualIllusions/coloring/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-03-23T15:31:30-05:00"><title>Coloring | Computación Visual</title><link rel=manifest href=/showcase/manifest.json><link rel=icon href=/showcase/favicon.png type=image/x-icon><link rel=stylesheet href=/showcase/book.min.a82d7e77ceb134d151c4d7e381eeb30623fbd5a524d58c584d8716ecec0205bd.css integrity="sha256-qC1+d86xNNFRxNfjge6zBiP71aUk1YxYTYcW7OwCBb0=" crossorigin=anonymous><script defer src=/showcase/flexsearch.min.js></script>
 <script defer src=/showcase/en.search.min.3a8d658c77eb93c7f12a2b8af49a700131e474f288eefb605d9fa61576dbe5a7.js integrity="sha256-Oo1ljHfrk8fxKiuK9JpwATHkdPKI7vtgXZ+mFXbb5ac=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
-<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/showcase/><span>Computación Visual</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li class=book-section-flat><span>Shortcodes</span><ul><li><a href=/showcase/docs/shortcodes/Basic/>Basic</a></li><li><input type=checkbox id=section-d200ae8d5104b797f81d670a6f628a3f class=toggle checked>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/showcase/><span>Computación Visual</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li class=book-section-flat><span>Shortcodes</span><ul><li><input type=checkbox id=section-d200ae8d5104b797f81d670a6f628a3f class=toggle checked>
 <label for=section-d200ae8d5104b797f81d670a6f628a3f class="flex justify-between"><a href=/showcase/docs/shortcodes/VisualIllusions/>Visual Illusions</a></label><ul><li><a href=/showcase/docs/shortcodes/VisualIllusions/coloring/ class=active>Coloring</a></li><li><a href=/showcase/docs/shortcodes/VisualIllusions/machBands/>Mach Bands</a></li><li><a href=/showcase/docs/shortcodes/VisualIllusions/masking/>Masking</a></li><li><a href=/showcase/docs/shortcodes/VisualIllusions/depthPerception/>Depth Perception</a></li></ul></li></ul></li></ul><ul><li><a href=/showcase/Nosotros/>Nosotros</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/showcase/svg/menu.svg class=book-icon alt=Menu></label>
 <strong>Coloring</strong>
-<label for=toc-control><img src=/showcase/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#coloring>Coloring</a><ul><li><a href=#intro-and-background>Intro and Background</a></li><li><a href=#code-and-results>Code and results</a><ul><li><a href=#color-models>Color models</a></li></ul></li><li><a href=#conclusions-and-future-work>Conclusions and future work</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=coloring>Coloring
+<label for=toc-control><img src=/showcase/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#coloring>Coloring</a><ul><li><a href=#intro-and-background>Intro and Background</a><ul><li><a href=#modelos-de-color><strong>Modelos de color</strong></a></li><li><a href=#modelo-hsl-hue-saturation-lightness><strong>Modelo HSL</strong> (Hue, Saturation, Lightness)</a></li><li><a href=#parametros>Parametros</a></li></ul></li><li><a href=#code-and-results>Code and results</a></li><li><a href=#conclusions-and-future-work>Conclusions and future work</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=coloring>Coloring
 <a class=anchor href=#coloring>#</a></h1><h2 id=intro-and-background>Intro and Background
-<a class=anchor href=#intro-and-background>#</a></h2><h2 id=code-and-results>Code and results
-<a class=anchor href=#code-and-results>#</a></h2><h3 id=color-models>Color models
-<a class=anchor href=#color-models>#</a></h3><iframe id=colorPicker style=width:625px;height:425px srcdoc="
+<a class=anchor href=#intro-and-background>#</a></h2><p>El color es una percepción visual generada en el cerebro, producto de interpretar las señales nerviosas enviadas por los fotorreceptores en el ojo. Los cuerpos iluminados absorben una parte de las ondas electromagneticas y reflejan el resto, que son captadas por el ojo e interpretadas como los diferentes colores dentro de la parte visible del espectro electromagnetico.</p><h3 id=modelos-de-color><strong>Modelos de color</strong>
+<a class=anchor href=#modelos-de-color>#</a></h3><p>En computacion grafica es util entonces representar un conjunto determinado de colores, dicha tarea es posible mediante ciertos modelos matematicos, llamados modelos de color. Existen muchos modelos de color que permiten generar un color u otro segun diferentes parametros, entre ellos RGB, CMY, HSL, etc.</p><p>RGB por ejemplo, es un modelo aditivo donde se empieza con negro (ausencia de luz) y al sumar distintas cantidades de rojo, verde y azul se produce toda la gama de colores, por esta razon los modelos aditivos como RGB son utilzados en pantallas, donde el &ldquo;lienzo&rdquo; es negro. Por el contrario, CMY es un modelo sustractivo, donde se empieza con blanco (luz) y se mezclan cantidades de cian, magenta y amarillo para absorber diferentes longitudes de onda y asi producir el color deseado, esto hace a los modelos sustractivos utiles en la impresion a color.</p><p align=center><img src=https://imborrable.com/wp-content/uploads/2022/10/rgb-colores.png width=500></p><p>Al analizar estos dos modelos de color es facil descubrir que la mezcla de solo unos pocos colores nos permiten crear una gama mucho mas amplia, a estos colores primitivos se les conoce como colores primarios, en modelos aditivos son el rojo, el varde y el azul (RGB) y en sustractivos el cian, el magenta y el amarillo (CMY). Los colores primarios no son una propiedad fundamental de la luz, sino un concepto biologico que se basa en la respuesta del ojo humano a dicho fenomeno.</p><h3 id=modelo-hsl-hue-saturation-lightness><strong>Modelo HSL</strong> (Hue, Saturation, Lightness)
+<a class=anchor href=#modelo-hsl-hue-saturation-lightness>#</a></h3><p>El modelo HSL es una transformacion no lineal del RGB, por tanto tambien es un modelo aditivo, sin embargo la gran diferencia esta en los parametros usados para representar el color. HSL esta basado en las propiedades del color: Matiz, Saturacion y Brillo, lo cual lo hace mas intuitivo que RGB a la hora de elegir los parametros que producen cierto color.</p><p align=center><img src=https://static.javatpoint.com/tutorial/dip/images/introduction-to-color-spaces5.png></p><h3 id=parametros>Parametros
+<a class=anchor href=#parametros>#</a></h3><div class=book-tabs><input type=radio class=toggle name=tabs-uniqueid id=tabs-uniqueid-0 checked>
+<label for=tabs-uniqueid-0>HSL</label><div class="book-tabs-content markdown-inner"><h3 id=hsl>HSL
+<a class=anchor href=#hsl>#</a></h3><ul><li>H: Matiz - Posicion de un color dentro de un circulo cromatico.</li><li>S: Saturacion - Distancia a la escala de grises, mayor saturacion = color mas vivo.</li><li>L: Luminosidad - Claridad u oscuridad del color, 0 equivale a negro.</li></ul></div><input type=radio class=toggle name=tabs-uniqueid id=tabs-uniqueid-1>
+<label for=tabs-uniqueid-1>RGB</label><div class="book-tabs-content markdown-inner"><h3 id=rgb>RGB
+<a class=anchor href=#rgb>#</a></h3><ul><li>R: Intensidad de Rojo.</li><li>G: Intensidad de Verde.</li><li>B: Intensidad de Azul.</li></ul></div></div><p>El siguiente ejercicio le presenta un color seleccionado aleatoriamente, intente recrearlo con la mayor similitud posible usando RGB y HSL, note la facilidad de HSL para aclarar, oscurecer y saturar el mismo color(matiz).</p><h2 id=code-and-results>Code and results
+<a class=anchor href=#code-and-results>#</a></h2><iframe id=colorPicker style=width:625px;height:425px srcdoc="
         <!DOCTYPE html>
         <html>
           <head>
@@ -23,6 +31,63 @@
           <body>
           </body>
         </html>
-      "></iframe><h2 id=conclusions-and-future-work>Conclusions and future work
-<a class=anchor href=#conclusions-and-future-work>#</a></h2></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/VisualCGroup/showcase/commit/5012cf74245d57ce76212b9d3551533020dc5c3d title='Last modified by dzambranob | March 20, 2023' target=_blank rel=noopener><img src=/showcase/svg/calendar.svg class=book-icon alt=Calendar>
-<span>March 20, 2023</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#coloring>Coloring</a><ul><li><a href=#intro-and-background>Intro and Background</a></li><li><a href=#code-and-results>Code and results</a><ul><li><a href=#color-models>Color models</a></li></ul></li><li><a href=#conclusions-and-future-work>Conclusions and future work</a></li></ul></li></ul></nav></div></aside></main></body></html>
+      "></iframe>
+<details><summary>Codigo</summary><div class=markdown-inner><pre><code>let colorRange = [20,230]
+let Rslider, Gslider, Bslider;
+let Hslider, Sslider, Lslider;
+
+function setup() {
+    createCanvas(windowWidth - 19, windowHeight - 20);
+    
+    background(random(colorRange[0],colorRange[1]), random(colorRange[0],colorRange[1]),random(colorRange[0],colorRange[1]));
+    
+    Rslider = createSlider(0,255, 125,0);
+    Gslider = createSlider(0,255, 125,0);
+    Bslider = createSlider(0,255, 125,0);
+    
+    Hslider = createSlider(0,360,360,0);
+    Sslider = createSlider(0,100,0,0);
+    Lslider = createSlider(0,100,50,0);
+}
+
+function draw() {
+    let R = Rslider.value();
+    Rslider.position(15, height * 2/3 + 10);
+    let G = Gslider.value();
+    Gslider.position(15, height * 2/3 + 30);
+    let B = Bslider.value();
+    Bslider.position(15, height * 2/3 + 50);
+    
+    let H = Hslider.value();
+    Hslider.position(width * (1-2/6), height * 2/3 + 10);
+    let S = Sslider.value();
+    Sslider.position(width * (1-2/6), height * 2/3 + 30);
+    let L = Lslider.value();
+    Lslider.position(width * (1-2/6), height * 2/3 + 50);
+    
+    push(); //left rectangle RGB
+    noStroke();
+    fill(R,G,B);
+    rect(0, 0, width /3, height * 2/3);
+    pop();
+    
+    push(); //right rectangle HSL
+    noStroke();
+    colorMode(HSL);
+    fill(H,S,L);
+    rect(width, 0, -width/3, height * 2/3)
+    pop();
+    
+    push();
+    rectMode(CORNERS);
+    textFont(&quot;Arial&quot;);
+    textSize(35);
+    textAlign(CENTER,CENTER);
+    text(&quot;RGB&quot;, 0, 0, width /3, height * 2/3);
+    text(&quot;HSL&quot;, width, 0, -width/3, height * 2/3);
+    pop();
+
+}
+</code></pre></div></details><h2 id=conclusions-and-future-work>Conclusions and future work
+<a class=anchor href=#conclusions-and-future-work>#</a></h2><p>Se puede concluir lo siguiente:</p><ul><li>Los modelos de color sirven para representar un conjunto determinado de colores.</li><li>El modelo de color que se utiliza en diferentes aplicaciones tecnologicas depende del uso mismo, cada modelo tiene ventajas y desventajas.</li><li>HSL y modelos similares, son mas intuitivos para la recreacion de un color en particular, comparados con RGB.</li></ul><p>Como futuros avances se puede extender el ejercicio a otros modelos de color, o la implementacion de un color picker, utilizando alguno de estos modelos.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/VisualCGroup/showcase/commit/3e3750791281b71d043887f66435047566065ead title='Last modified by Diego Bello | March 23, 2023' target=_blank rel=noopener><img src=/showcase/svg/calendar.svg class=book-icon alt=Calendar>
+<span>March 23, 2023</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#coloring>Coloring</a><ul><li><a href=#intro-and-background>Intro and Background</a><ul><li><a href=#modelos-de-color><strong>Modelos de color</strong></a></li><li><a href=#modelo-hsl-hue-saturation-lightness><strong>Modelo HSL</strong> (Hue, Saturation, Lightness)</a></li><li><a href=#parametros>Parametros</a></li></ul></li><li><a href=#code-and-results>Code and results</a></li><li><a href=#conclusions-and-future-work>Conclusions and future work</a></li></ul></li></ul></nav></div></aside></main></body></html>
