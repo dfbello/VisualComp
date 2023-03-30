@@ -128,4 +128,13 @@ Se puede concluir lo siguiente:
 * El modelo de color que se utiliza en diferentes aplicaciones tecnológicas depende del uso mismo, cada modelo tiene ventajas y desventajas.
 * HSL y modelos similares, son más intuitivos para la recreación de un color en particular, comparados con RGB.
 
-Como futuros avances, se puede extender el ejercicio a otros modelos de color, o la implementación de un color picker, utilizando alguno de estos modelos.
+Como futuros avances se puede extender el ejercicio a otros modelos de color, o la implementacion de un color picker, utilizando alguno de estos modelos.
+
+{{< expand "Referencias" "...">}}
+
+## Referencias
+
+- 
+  {{< /expand >}}
+
+{{< button relref="/" >}}Get Home{{< /button >}}

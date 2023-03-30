@@ -25,11 +25,11 @@ function draw() {
   noStroke();
   if (colorCheck.checked()){
     push();
-  fill("yellow");
-  rect(xPos,80,100,40);
-  fill("blue");
-  rect(xPos,180,100,40);
-  pop();
+    fill("yellow");
+    rect(xPos,80,100,40);
+    fill("blue");
+    rect(xPos,180,100,40);
+    pop();
   } else {
     push();
     fill("white");
@@ -41,6 +41,6 @@ function draw() {
   
   xPos += rectSpeed;
   if(xPos+100 >= width || xPos <= 0){
-      rectSpeed*=-1;
-    }
+    rectSpeed*=-1;
+  }
 }
