@@ -129,3 +129,12 @@ Se puede concluir lo siguiente:
 * HSL y modelos similares, son mas intuitivos para la recreacion de un color en particular, comparados con RGB.
 
 Como futuros avances se puede extender el ejercicio a otros modelos de color, o la implementacion de un color picker, utilizando alguno de estos modelos.
+
+{{< expand "Referencias" "...">}}
+
+## Referencias
+
+- 
+  {{< /expand >}}
+
+{{< button relref="/" >}}Get Home{{< /button >}}

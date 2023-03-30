@@ -6,25 +6,190 @@ weight: 3
 
 ## Intro and background
 
+El visual masking es un fenómeno de percepción visual que ocurre cuando la visibilidad de una imagen, llamada objetivo, es reducida por la presencia de otra imagen que se superpone, llamada máscara.
+
 Los patrones de Moiré son patrones de interferencia que aparecen cuando dos o más patrones de líneas se superponen y no están perfectamente alineados. Este efecto se produce cuando se colocan dos rejillas con patrones de líneas finas una encima de la otra, de tal manera que las líneas de una rejilla no están perfectamente alineadas con las líneas de la otra rejilla. Como resultado, se produce una interferencia entre los patrones de líneas, lo que crea un patrón de ondulación o un efecto de malla en la imagen resultante.
 
 ## Code and results
 
 ### Moire Patterns
 
-En este caso se van a utilizar patrones con círculos para crear efectos ondulatorios al superponer dos series de círculos con el mismo espacio entre ellos, donde uno se mueve a lo largo del canvas mientras que el otro se mantiene estático. De esta manera se genera un patrón de moire.
+Para estos patrones se hizo uso de varias formas en grupos en donde se supeponen entre ellas para generar una nueva forma o patrón en el interior.
 
 #### Patrón de círculos
 
+En este caso se van a utilizar patrones con círculos para crear efectos ondulatorios al superponer dos series de círculos con el mismo espacio entre ellos, donde uno se mueve a lo largo del canvas mientras que el otro se mantiene estático. De esta manera se genera un patrón de moire.
+
+{{<details relevantCode open>}}
+        function setup() {
+        createCanvas(400, 400);
+        }
+
+        function draw() {
+        noFill();
+        strokeWeight(ringWidth);
+        for (let i = 0; i < numRings; i++) {
+            let radius = i * ringSpacing + ringWidth / 2;
+            ellipse(width / 2, height / 2, radius * 2, radius * 2);
+        }
+        for (let i = 0; i < numRings; i++) {
+            let radius = i * ringSpacing + ringWidth / 2;
+            ellipse(xVar, height / 2, radius * 2, radius * 2);
+        }
+        }
+{{</details>}}
+
+En este caso es posible modificar la velocidad a la que se mueve el segundo grupo de circulos dentro del canvas.
+
+{{<details Code>}}
+        let xVar = 200
+        let numRings = 40;  // number of rings
+        let ringSpacing = 5;  // spacing between rings
+        let ringWidth = 2;  // width of each ring
+        let ringColor = [255, 0, 0];  // color of rings
+        let speedSlider;
+        let speed = 0.5;
+        let direction = true;
+
+        function setup() {
+        createCanvas(400, 400);
+        speedSlider = createSlider(0, 10, 5, 1);
+        speedSlider.position(10,10);
+        speedSlider.style("width", "80px");
+        }
+
+        function draw() {
+        background(255);
+
+        // draw rings
+        noFill();
+        strokeWeight(ringWidth);
+        //stroke(ringColor);
+        for (let i = 0; i < numRings; i++) {
+            let radius = i * ringSpacing + ringWidth / 2;
+            ellipse(width / 2, height / 2, radius * 2, radius * 2);
+        }
+        for (let i = 0; i < numRings; i++) {
+            let radius = i * ringSpacing + ringWidth / 2;
+            ellipse(xVar, height / 2, radius * 2, radius * 2);
+        }
+        maxRadius = numRings*ringSpacing + ringWidth / 2;
+        if (direction){
+            xVar += speedSlider.value()/10;
+        }
+        else {
+            xVar -= speedSlider.value()/10;
+        }
+        if (xVar + maxRadius > width + 50){
+            direction = false
+        }
+        else if (xVar - maxRadius < -50){
+            direction = true
+        }
+        }
+{{</details>}}
+
 {{< p5-iframe sketch="/showcase/sketches/moirePattern1.js" width="425" height="425">}}
 
-#### Patrón con elipses sobrepuestos
+#### Patrón de lineas paralelas
 
-{{< p5-iframe sketch="/showcase/sketches/moirePattern2.js" width="525" height="575">}}
+Dentro del siguiente código se tienen dos grupos de lineas paralelas, unas están fijas mientras que las otras van rotando desde el centro. Esto genera un efecto que crea la ilusión de generación de rombos de diferentes tamaños dependiendo del ángulo de giro del segundo grupo de lineas.
 
-#### Patrón de líneas sobrepuestas
+{{<details relevantCode open>}}
+        function setup() {
+            createCanvas(500, 500);
+        }
 
-{{< p5-iframe sketch="/showcase/sketches/moirePattern3.js" width="425" height="425">}}
+        function draw() {
+            background(255);
+            for (let y = 0; y < height; y += 10) {
+                line(0, y, width, y);
+            }
+            push();
+            translate(width/2, height/2); 
+            rotate(angle);
+            for (let y = -height; y < height; y += 10) {
+                line(-width/2, y, width/2, y);
+            }
+            pop();
+        }
+{{</details>}}
+
+{{<details Code>}}
+        let angle = 0;
+        function setup() {
+        createCanvas(500, 500);
+        angleMode(DEGREES);
+        strokeWeight(3);
+        }
+
+        function draw() {
+        
+        }
+{{</details>}}
+
+{{< p5-iframe sketch="/showcase/sketches/moirePattern3.js" width="525" height="525">}}
+
+#### Kinegrama
+
+El siguiente kinegrama se genera a partir de una imágen preestablecida que se muestra dentro del mismo programa al hacer clic en el canvas de la misma. Sobre esta imagen, a forma de mascara, se coloca una capa de líneas que van de arriba a abajo y que revelan el contenido de la imagen de debajo, que sería el objetivo
+
+{{<details relevantCode open>}}
+        function preload() {
+            img = loadImage("/showcase/sketches/assets/kinegram.png");
+        }
+        function setup() {
+            createCanvas(400, 420);
+        }
+        function draw() {
+            image(img,0,0);
+            for(let i = -height/rectLen; i < 0; i+=spacing){
+                fill("black");
+                rect(0,i*rectLen+y,width,rectLen);
+            }
+            y += rectSpeed;
+            if ((-height+y) >= height) {
+                y = 0;
+            }
+        }
+{{</details>}}
+
+Esta imagen está hecha aparte y no se calcula dentro del programa, sin embargo es posible realiar un programa que calcule la imagen objetivo a partir de un gif o una serie de imagenes que se quieran visualizar de esta manera.
+
+{{<details Code>}}
+        let img;
+        let rectSpeed = 0.5;
+        let rectLen = 10;
+        let spacing = 1.2;
+        let y = 0;
+
+        function preload() {
+            img = loadImage("/showcase/sketches/assets/kinegram.png");
+        }
+
+        function setup() {
+            createCanvas(400, 420);
+        }
+
+        function draw() {
+            background(255);
+            image(img,0,0);
+            for(let i = -height/rectLen; i < 0; i+=spacing){
+                fill("black");
+                rect(0,i*rectLen+y,width,rectLen);
+            }
+            y += rectSpeed;
+            if ((-height+y) >= height) {
+                y = 0;
+            }
+            if(mouseIsPressed){
+                background(255);
+                image(img,0,0);
+            }
+        }
+{{</details>}}
+
+{{< p5-iframe sketch="/showcase/sketches/kinegram.js" width="425" height="445">}}
 
 ### Dithering
 
@@ -41,3 +206,30 @@ Cada uno de los diferentes kernels se pude escoger con el desplegable que se enc
 {{< p5-iframe sketch="/showcase/sketches/kernelImages.js" width="625" height="625">}}
 
 ## Conclusions and future work
+
+A partir del anterior trabajo se puede concluir que 
+
+- Los patrones de moire y los kinegramas son formas muy sencillas de hace ilusiones visuales al utilizar dos elementos en el que uno cubre al otro para general nuevas figuras a partir de lo que se quiere mostrar
+
+- Se pueden formar infinidad de patrones de moire con muchas figuras de diferentes formas y tamaños, sin embargo dentro de la más estudiadas se encuentran las formas más básicas como círculos o lineas
+
+- Un kinegrama tiene grandes aplicaciones en la realización de movimientos a partir de una imagen base, la cual puede ser calculada a partir de alguna serie de imagenes existentes.
+
+- El procesamiento de imagenes kernel es util cuando se requiere hacer un calculo más específico de algunas características que pueda tener la imagen en cuestión.
+
+Como trabajo futuro se espera poder implementar más patrones de moire mucho más complejos y que creen fiiguras más interesantes para el ojo humano. Además de generar la imágen objetivo de un kinegrama a partir de un gif o de varias imagenes en secuencia.</br>
+Por último se espera que dentro de los kernel de imagenes se pueda aplicar el mismo modelo a un video en tiempo real.
+
+{{< expand "Referencias" "...">}}
+
+## Referencias
+
+- https://en.wikipedia.org/wiki/Visual_masking
+- https://www.sciencedirect.com/topics/medicine-and-dentistry/visual-masking
+- https://www.britannica.com/science/moire-pattern
+- https://en.wikipedia.org/wiki/Kernel_(image_processing)
+- https://setosa.io/ev/image-kernels/
+
+  {{< /expand >}}
+
+{{< button relref="/" >}}Get Home{{< /button >}}
