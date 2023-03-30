@@ -3,6 +3,7 @@ let histogram = []
 let newimg;
 let d;
 let sel;
+let bright = 0
 function setup() {
   let fileInput = createFileInput(handleFile);
   fileInput.position(10, 10);
@@ -36,30 +37,29 @@ function draw() {
     image(img, 0, 25);
     let sizem = 3;
     newimg.loadPixels();
-    img.loadPixels();
-    if (sel.value() !== 'Identity') {  
-      matrix = selection(sel.value());
-      for (var x = 0; x < newimg.width; x++) {
-        for (var y = 0; y < newimg.height; y++) {
-          let c = convolution(img, x, y, matrix, sizem);
-          var index =  (y * newimg.width + x) * 4;
-
-          newimg.pixels[index] = c[0];
-          newimg.pixels[index + 1] = c[1];
-          newimg.pixels[index + 2] = c[2];
-          newimg.pixels[index + 3] = 255;
-        }
+    img.loadPixels(); 
+    matrix = selection(sel.value());
+    for (var x = 0; x < newimg.width; x++) {
+      for (var y = 0; y < newimg.height; y++) {
+        let c = convolution(img, x, y, matrix, sizem);
+        var index =  (y * newimg.width + x) * 4;
+        newimg.pixels[index] = c[0];
+        newimg.pixels[index + 1] = c[1];
+        newimg.pixels[index + 2] = c[2];
+        newimg.pixels[index + 3] = 255;
+        newimg.pixels[index] += (256*bright)/100;
+        newimg.pixels[index+1] += (256*bright)/100;
+        newimg.pixels[index+2] += (256*bright)/100;
       }
-      newimg.updatePixels();
-      image(newimg, width/2, 25);
-      getHistogram(newimg);
-    } else {
-      image(img, width/2, 25); 
-      getHistogram(img);
     }
+    newimg.updatePixels();
+    image(newimg, width/2, 25);
+    text(bright, 10, 350)
+    getHistogram(newimg);
     push();
     stroke(255,0,0)
     line(0, 330, width, 330);
+    //text("Histograma", 10, 350)
     pop();
     let maxCount = max(histogram);
     stroke(0);
@@ -91,6 +91,11 @@ function convolution(img, x, y, matrix, sizem) {
 
 function selection(value) {
   switch (value) {
+    case 'Identity':
+      matrix = [ [ 0, 0, 0 ],
+                 [ 0,  1, 0 ],
+                 [ 0, 0, 0 ] ];
+      break;
     case 'Ridge detection':
       matrix = [ [ -1, -1, -1 ],
                  [ -1,  8, -1 ],
@@ -128,35 +133,13 @@ function selection(value) {
   return matrix
 }
 
-function brillo(more){
-  img.loadPixels();
-  for (var x = 0; x < img.width; x++) {
-    for (var y = 0; y < img.height; y++) {
-      var index =  (y * img.width + x) * 4;
-      if(more){
-        img.pixels[index] = constrain(img.pixels[index]*1.1,0,255);
-        img.pixels[index+1] = constrain(img.pixels[index+1]*1.1,0,255);
-        img.pixels[index+2] = constrain(img.pixels[index+2]*1.1,0,255);
-      }
-      else{
-        img.pixels[index] = constrain(img.pixels[index]/1.1,0,255);
-        img.pixels[index+1] = constrain(img.pixels[index+1]/1.1,0,255);
-        img.pixels[index+2] = constrain(img.pixels[index+2]/1.1,0,255);
-      }
-    }
-  }
-  img.updatePixels();
-  image(img, width/2, 0);
-}
-
 function keyPressed() {
   switch (key) {
     case "+":
-      brillo(true); 
+      bright += 5;
       break;
     case "-":
-      brillo(false);
-      break;
+      bright -= 5;
   }
 }
 
