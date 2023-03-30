@@ -3,7 +3,7 @@ let maxSize = 250;
 
 
 function setup() {
-  createCanvas(windowWidth -19, windowWidth - 19);
+  createCanvas(600, 600);
   gridSlider = createSlider(2,maxSize,2,5);
   gridSlider.position(10,10); 
 }
