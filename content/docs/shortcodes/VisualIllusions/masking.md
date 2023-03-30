@@ -32,6 +32,10 @@ En este caso se van a utilizar patrones con círculos para crear efectos ondulat
 
 #### Dithering
 
+El dithering es una forma intencional de aplicar ruido, usada para aleatorizar el error de cuantificación y de esta manera evitar patrones a gran escala como color banding en las imágenes. Dither es utilizado en diferentes campos donde ocurre procesamiento y análisis de señales digitales. 
+
+En el procesamiento de imágenes digitales es usado para generar profundidad de color en situaciones donde la paleta de colores es limitada. Los colores no existentes en la paleta se aproximan por una difusión de píxeles dentro de la gama de colores disponibles. El siguiente ejemplo muestra como se produce un amarillo a partir de rojo y verde. Use el slider parra hacer la rejilla mas pequeña, donde se empieza a apreciar el efecto.
+
 {{< p5-iframe sketch="/showcase/sketches/dithering.js" width="625" height="625">}}
 
 ### Image kernel
