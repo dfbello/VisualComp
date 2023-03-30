@@ -22,11 +22,15 @@ En este caso se van a utilizar patrones con círculos para crear efectos ondulat
 
 {{< p5-iframe sketch="/showcase/sketches/moirePattern2.js" width="525" height="575">}}
 
+#### Patrón de líneas espaciadas
+
+{{< p5-iframe sketch="/showcase/sketches/moirePattern4.js" width="600" height="600" >}}
+
 #### Patrón de líneas sobrepuestas
 
 {{< p5-iframe sketch="/showcase/sketches/moirePattern3.js" width="425" height="425">}}
 
-### Dithering
+#### Dithering
 
 {{< p5-iframe sketch="/showcase/sketches/dithering.js" width="625" height="625">}}
 
