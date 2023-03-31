@@ -41,6 +41,9 @@ En este caso se van a utilizar patrones con círculos para crear efectos ondulat
 
 En este caso es posible modificar la velocidad a la que se mueve el segundo grupo de circulos dentro del canvas.
 
+{{< p5-iframe sketch="/showcase/sketches/moirePattern1.js" width="425" height="425">}}
+
+
 {{<details Code>}}
         let xVar = 200
         let numRings = 40;  // number of rings
@@ -89,8 +92,6 @@ En este caso es posible modificar la velocidad a la que se mueve el segundo grup
         }
 {{</details>}}
 
-{{< p5-iframe sketch="/showcase/sketches/moirePattern1.js" width="425" height="425">}}
-
 #### Patrón de lineas paralelas
 
 Dentro del siguiente código se tienen dos grupos de lineas paralelas, unas están fijas mientras que las otras van rotando desde el centro. Esto genera un efecto que crea la ilusión de generación de rombos de diferentes tamaños dependiendo del ángulo de giro del segundo grupo de lineas.
@@ -115,6 +116,8 @@ Dentro del siguiente código se tienen dos grupos de lineas paralelas, unas est�
         }
 {{</details>}}
 
+{{< p5-iframe sketch="/showcase/sketches/moirePattern3.js" width="525" height="525">}}
+
 {{<details Code>}}
         let angle = 0;
         function setup() {
@@ -128,11 +131,33 @@ Dentro del siguiente código se tienen dos grupos de lineas paralelas, unas est�
         }
 {{</details>}}
 
-{{< p5-iframe sketch="/showcase/sketches/moirePattern3.js" width="525" height="525">}}
-
 #### Patrón de líneas espaciadas
 
 {{< p5-iframe sketch="/showcase/sketches/moirePattern4.js" width="600" height="600" >}}
+
+{{< details Code>}}
+
+    let gridSpacing;
+    let slider;
+
+
+    function setup() {
+        createCanvas(575,575);
+        slider = createSlider(1,30,6,1);
+        slider.position(10,10);
+        stroke(255,255,255);
+    }
+
+    function draw() {
+        background(0,0,0);
+        gridSpacing = slider.value();
+        for(i = 0; i<width; i ++){
+            line(gridSpacing * i, 0, 0, height);
+        }
+    }
+
+
+{{</details>}}
 
 
 #### Kinegrama
@@ -160,6 +185,9 @@ El siguiente kinegrama se genera a partir de una imágen preestablecida que se m
 {{</details>}}
 
 Esta imagen está hecha aparte y no se calcula dentro del programa, sin embargo es posible realiar un programa que calcule la imagen objetivo a partir de un gif o una serie de imagenes que se quieran visualizar de esta manera.
+
+
+{{< p5-iframe sketch="/showcase/sketches/kinegram.js" width="425" height="445">}}
 
 {{<details Code>}}
         let img;
@@ -194,8 +222,6 @@ Esta imagen está hecha aparte y no se calcula dentro del programa, sin embargo 
         }
 {{</details>}}
 
-{{< p5-iframe sketch="/showcase/sketches/kinegram.js" width="425" height="445">}}
-
 #### Dithering
 
 El dithering es una forma intencional de aplicar ruido, usada para aleatorizar el error de cuantificación y de esta manera evitar patrones a gran escala como color banding en las imágenes. Dither es utilizado en diferentes campos donde ocurre procesamiento y análisis de señales digitales. 
@@ -203,6 +229,53 @@ El dithering es una forma intencional de aplicar ruido, usada para aleatorizar e
 En el procesamiento de imágenes digitales es usado para generar profundidad de color en situaciones donde la paleta de colores es limitada. Los colores no existentes en la paleta se aproximan por una difusión de píxeles dentro de la gama de colores disponibles. El siguiente ejemplo muestra como se produce un amarillo a partir de rojo y verde. Use el slider parra hacer la rejilla mas pequeña, donde se empieza a apreciar el efecto.
 
 {{< p5-iframe sketch="/showcase/sketches/dithering.js" width="625" height="625">}}
+
+{{<details Code>}}
+
+    let gridSlider;
+    let maxSize = 250;
+
+
+    function setup() {
+        createCanvas(600, 600);
+        gridSlider = createSlider(2,maxSize,2,5);
+        gridSlider.position(10,10); 
+    }
+
+
+    function draw() {
+        background(0);
+        gridSize = gridSlider.value(); 
+        grid(gridSize, [255,0,0], [0,255,0]);
+    }
+
+    function grid(Size, colorA, colorB){
+        
+        w = width/Size;
+        h = height/Size;
+        
+        noStroke();
+        for(i = 0 ; i < Size; i++){        
+            if (i % 2 == 0){
+                c = 0;
+            }else{
+                c = 1;
+            }
+            
+            for(j = 0; j < Size; j++){
+            
+                if(j % 2 == c){
+                    fill(colorA);
+                }else{
+                    fill(colorB);
+                }
+                
+                rect(w * i, j * h, w, h);
+            }
+        }
+    }
+
+{{</details>}}
 
 ### Image kernel
 
@@ -238,6 +311,7 @@ Por último se espera que dentro de los kernel de imagenes se pueda aplicar el m
 - https://www.britannica.com/science/moire-pattern
 - https://en.wikipedia.org/wiki/Kernel_(image_processing)
 - https://setosa.io/ev/image-kernels/
+- https://en.wikipedia.org/wiki/Dither
 
   {{< /expand >}}
 

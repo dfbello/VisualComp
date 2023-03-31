@@ -19,6 +19,8 @@ Amante de muchas cosas, entre ellas de entender cómo funciona el mundo y del po
 
 Mi aspiración con el curso consiste en alimentar mi curiosidad con los temas propuestos y saciar esa curiosidad con el trabajo que realice durante el mismo.
 
+Dentro de mis hobbies favoritos tengo jugar fútbol, videojuegos (En especial shooters de primera persona) y leer. También pertenezco al grupo de karting de la universidad.
+
 ## **David Alexander Zambrano Bohórquez**
 
 Estudiante de Ingeniería de Sistemas y Computación de la Universidad Nacional de Colombia. </br>

@@ -62,7 +62,7 @@ El siguiente ejercicio le presenta un color seleccionado aleatoriamente, intente
 
 {{< p5-iframe sketch="/showcase/sketches/colorPicker.js" width="625" height="425">}}
 
-{{< details Codigo>}}
+{{< details Code>}}
     let colorRange = [20,230]
     let Rslider, Gslider, Bslider;
     let Hslider, Sslider, Lslider;
@@ -134,7 +134,12 @@ Como futuros avances se puede extender el ejercicio a otros modelos de color, o 
 
 ## Referencias
 
-- 
-  {{< /expand >}}
+* https://es.wikipedia.org/wiki/Color
+* https://es.wikipedia.org/wiki/RGB
+* https://www.javatpoint.com/introduction-to-color-spaces
+
+
+  
+{{< /expand >}}
 
 {{< button relref="/" >}}Get Home{{< /button >}}
