@@ -6,13 +6,13 @@ weight: 1
 
 ## Intro and Background
 
-El color es una percepción visual generada en el cerebro, producto de interpretar las señales nerviosas enviadas por los fotorreceptores en el ojo. Los cuerpos iluminados absorben una parte de las ondas electromagneticas y reflejan el resto, que son captadas por el ojo e interpretadas como los diferentes colores dentro de la parte visible del espectro electromagnetico.
+El color es una percepción visual generada en el cerebro, producto de interpretar las señales nerviosas enviadas por los fotorreceptores en el ojo. Los cuerpos iluminados absorben una parte de las ondas electromagnéticas y reflejan el resto, que son captadas por el ojo e interpretadas como los diferentes colores dentro de la parte visible del espectro electromagnético.
 
 ### **Modelos de color** 
 
-En computacion grafica es util entonces representar un conjunto determinado de colores, dicha tarea es posible mediante ciertos modelos matematicos, llamados modelos de color. Existen muchos modelos de color que permiten generar un color u otro segun diferentes parametros, entre ellos RGB, CMY, HSL, etc. 
+En computación gráfica es útil entonces representar un conjunto determinado de colores, dicha tarea es posible mediante ciertos modelos matemáticos, llamados modelos de color. Existen muchos modelos de color que permiten generar un color u otro según diferentes parámetros, entre ellos RGB, CMY, HSL, etc. 
 
-RGB por ejemplo, es un modelo aditivo donde se empieza con negro (ausencia de luz) y al sumar distintas cantidades de rojo, verde y azul se produce toda la gama de colores, por esta razon los modelos aditivos como RGB son utilzados en pantallas, donde el "lienzo" es negro. Por el contrario, CMY es un modelo sustractivo, donde se empieza con blanco (luz) y se mezclan cantidades de cian, magenta y amarillo para absorber diferentes longitudes de onda y asi producir el color deseado, esto hace a los modelos sustractivos utiles en la impresion a color.
+RGB por ejemplo, es un modelo aditivo donde se empieza con negro (ausencia de luz) y al sumar distintas cantidades de rojo, verde y azul se produce toda la gama de colores, por esta razón los modelos aditivos como RGB son utilizados en pantallas, donde el "lienzo" es negro. Por el contrario, CMY es un modelo sustractivo, donde se empieza con blanco (luz) y se mezclan cantidades de cian, magenta y amarillo para absorber diferentes longitudes de onda y así producir el color deseado, esto hace a los modelos sustractivos útiles en la impresión a color.
 
 
 
@@ -20,11 +20,11 @@ RGB por ejemplo, es un modelo aditivo donde se empieza con negro (ausencia de lu
     <img src= "https://imborrable.com/wp-content/uploads/2022/10/rgb-colores.png" width=500>
 </p>
 
-Al analizar estos dos modelos de color es facil descubrir que la mezcla de solo unos pocos colores nos permiten crear una gama mucho mas amplia, a estos colores primitivos se les conoce como colores primarios, en modelos aditivos son el rojo, el varde y el azul (RGB) y en sustractivos el cian, el magenta y el amarillo (CMY). Los colores primarios no son una propiedad fundamental de la luz, sino un concepto biologico que se basa en la respuesta del ojo humano a dicho fenomeno.
+Al analizar estos dos modelos de color es fácil descubrir que la mezcla de solo unos pocos colores nos permiten crear una gama mucho más amplia, a estos colores primitivos se les conoce como colores primarios, en modelos aditivos son el rojo, el verde y el azul (RGB) y en sustractivos el cian, el magenta y el amarillo (CMY). Los colores primarios no son una propiedad fundamental de la luz, sino un concepto biológico que se basa en la respuesta del ojo humano a dicho fenómeno.
 
 ### **Modelo HSL** (Hue, Saturation, Lightness)
 
-El modelo HSL es una transformacion no lineal del RGB, por tanto tambien es un modelo aditivo, sin embargo la gran diferencia esta en los parametros usados para representar el color. HSL esta basado en las propiedades del color: Matiz, Saturacion y Brillo, lo cual lo hace mas intuitivo que RGB a la hora de elegir los parametros que producen cierto color. 
+El modelo HSL es una transformación no lineal del RGB, por tanto, también es un modelo aditivo, sin embargo, la gran diferencia está en los parámetros usados para representar el color. HSL está basado en las propiedades del color: Matiz, Saturación y Brillo, lo cual lo hace más intuitivo que RGB a la hora de elegir los parámetros que producen cierto color. 
 
 <p align="center">
     <img src="https://static.javatpoint.com/tutorial/dip/images/introduction-to-color-spaces5.png">
@@ -37,8 +37,8 @@ El modelo HSL es una transformacion no lineal del RGB, por tanto tambien es un m
 <!--1-->{{< tab "HSL" >}}
 
 ### HSL
-* H: Matiz - Posicion de un color dentro de un circulo cromatico.
-* S: Saturacion - Distancia a la escala de grises, mayor saturacion = color mas vivo.
+* H: Matiz - Posición de un color dentro de un círculo cromático.
+* S: Saturación - Distancia a la escala de grises, mayor saturación = color más vivo.
 * L: Luminosidad - Claridad u oscuridad del color, 0 equivale a negro.
 
 
@@ -62,7 +62,7 @@ El siguiente ejercicio le presenta un color seleccionado aleatoriamente, intente
 
 {{< p5-iframe sketch="/showcase/sketches/colorPicker.js" width="625" height="425">}}
 
-{{< details Codigo>}}
+{{< details Code>}}
     let colorRange = [20,230]
     let Rslider, Gslider, Bslider;
     let Hslider, Sslider, Lslider;
@@ -125,7 +125,21 @@ El siguiente ejercicio le presenta un color seleccionado aleatoriamente, intente
 
 Se puede concluir lo siguiente:
 * Los modelos de color sirven para representar un conjunto determinado de colores.
-* El modelo de color que se utiliza en diferentes aplicaciones tecnologicas depende del uso mismo, cada modelo tiene ventajas y desventajas.
-* HSL y modelos similares, son mas intuitivos para la recreacion de un color en particular, comparados con RGB.
+* El modelo de color que se utiliza en diferentes aplicaciones tecnológicas depende del uso mismo, cada modelo tiene ventajas y desventajas.
+* HSL y modelos similares, son más intuitivos para la recreación de un color en particular, comparados con RGB.
 
 Como futuros avances se puede extender el ejercicio a otros modelos de color, o la implementacion de un color picker, utilizando alguno de estos modelos.
+
+{{< expand "Referencias" "...">}}
+
+## Referencias
+
+* https://es.wikipedia.org/wiki/Color
+* https://es.wikipedia.org/wiki/RGB
+* https://www.javatpoint.com/introduction-to-color-spaces
+
+
+  
+{{< /expand >}}
+
+{{< button relref="/" >}}Get Home{{< /button >}}

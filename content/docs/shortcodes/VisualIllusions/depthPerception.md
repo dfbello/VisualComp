@@ -26,7 +26,7 @@ Dentro del siguiente código se tiene un patrón de percepción de profundidad c
 
 {{< p5-iframe sketch="/showcase/sketches/dotsPerspective.js" width="725" height="525">}}
 
-Este efecto se logra al crear tres niveles en los que se dibujan los puntos, en donde cada uno tiene un tamaño definido que depende de lo lejano que se quiera hacer ver. Luego de ello se hace un cálculo de la nueva posición que debe tener cada uno y la dirección dependiendo del lugar donde se encuentre el mouse y lo alejado que esté del centro.; teniendo en cuenta que cada capa debe tener una velocidad diferente de movimiento. Además de ello se dibuja primero todos los puntos que estén más atrás, luego los del medio y luego los de más adelante para que no exista una superposición que afecte la vizualización del fenómeno. 
+Este efecto se logra al crear tres niveles en los que se dibujan los puntos, en donde cada uno tiene un tamaño definido que depende de lo lejano que se quiera hacer ver. Luego de ello se hace un cálculo de la nueva posición que debe tener cada uno y la dirección dependiendo del lugar donde se encuentre el mouse y lo alejado que esté del centro.; teniendo en cuenta que cada capa debe tener una velocidad diferente de movimiento. Además de ello se dibuja primero todos los puntos que estén más atrás, luego los del medio y luego los de más adelante para que no exista una superposición que afecte la vizualización del fenómeno.
 En este caso se aprovecha el tamaño relativo para crear la ilusión de perspectiva
 
 ### Silla de Beuchet
@@ -52,3 +52,15 @@ A partir de lo realizado anteriormente, se puede concluir que
 - Las monocular cues son muy útiles para dar percepción de profundidad en el caso en el que se tenga que realizar esta tarea en un ambiente bidimensional, aprovechandose de diferentes técnicas definidas en categorías que se usan dependiendo de la finalidad deseada.
 
 Como trabajo futuro, se esperan realizar más ejemplos de esta percepción a partir de las otras categorías que proveen las monocular cues, de esta manera aprender a dar ilusiones de tridimensionalidad con elementos bidimensionales.
+
+{{< expand "Referencias" "...">}}
+
+## Referencias
+
+- https://en.wikipedia.org/wiki/Depth_perception
+- https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5131737/
+- https://homepage.divms.uiowa.edu/~stroyan/Site/Vision.html
+
+  {{< /expand >}}
+
+{{< button relref="/" >}}Get Home{{< /button >}}
