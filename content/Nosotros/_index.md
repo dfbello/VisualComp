@@ -5,12 +5,16 @@ menu:
     weight: 1
 title: Nosotros
 ---
+
 # Integrantes
+
 El grupo de trabajo que desarrolló este trabajo se encuentra compuesto por:
 
 ## **Santiago Arias Bareño**
 
-Estudiante de Ingeniería de Sistemas y Computación @ Universidad Nacional de Colombia
+Estudiante de Ingeniería de Sistemas y Computación @ Universidad Nacional de Colombia.
+Interesado en el desarrollo de software y la gerencia de proyectos de software.
+[Github](https://github.com/Saariasba)
 
 ## **Diego Fernando Bello López**
 
@@ -18,8 +22,6 @@ Estudiante de Ingeniería de Sistemas y Computación @ Universidad Nacional de C
 Amante de muchas cosas, entre ellas de entender cómo funciona el mundo y del pote de salsa que dan en Little Caesars. [Github](https://github.com/dfbello)
 
 Mi aspiración con el curso consiste en alimentar mi curiosidad con los temas propuestos y saciar esa curiosidad con el trabajo que realice durante el curso.
-
-
 
 ## **David Alexander Zambrano Bohórquez**
 

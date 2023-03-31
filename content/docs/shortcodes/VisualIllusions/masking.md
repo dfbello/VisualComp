@@ -41,3 +41,9 @@ Cada uno de los diferentes kernels se pude escoger con el desplegable que se enc
 {{< p5-iframe sketch="/showcase/sketches/kernelImages.js" width="625" height="625">}}
 
 ## Conclusions and future work
+
+Se puede concluir lo siguiente:
+
+- El masking que superpone dos imagenes como lo vemos en el primer ejemplo, muestra la facilidad de crear este tipo de ilusiones y que se vean visualmente atractivas.
+
+Como futuros avances se puede extender el ejercicio superponiendo unas ilusiones sobre otras, lo cual generarán algunas más interesantes.
