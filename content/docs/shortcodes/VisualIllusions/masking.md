@@ -166,23 +166,25 @@ strokeWeight(3);
 El siguiente kinegrama se genera a partir de una imágen preestablecida que se muestra dentro del mismo programa al hacer clic en el canvas de la misma. Sobre esta imagen, a forma de mascara, se coloca una capa de líneas que van de arriba a abajo y que revelan el contenido de la imagen de debajo, que sería el objetivo
 
 {{<details relevantCode open>}}
-function preload() {
-img = loadImage("/showcase/sketches/assets/kinegram.png");
-}
-function setup() {
-createCanvas(400, 420);
-}
-function draw() {
-image(img,0,0);
-for(let i = -height/rectLen; i < 0; i+=spacing){
-fill("black");
-rect(0,i\*rectLen+y,width,rectLen);
-}
-y += rectSpeed;
-if ((-height+y) >= height) {
-y = 0;
-}
-}
+
+        function preload() {
+                img = loadImage("/showcase/sketches/assets/kinegram.png");
+        }
+        function setup() {
+                createCanvas(400, 420);
+        }
+        function draw() {
+                image(img,0,0);
+                for(let i = -height/rectLen; i < 0; i+=spacing){
+                fill("black");
+                rect(0,i\*rectLen+y,width,rectLen);
+                }
+                y += rectSpeed;
+                if ((-height+y) >= height) {
+                y = 0;
+                }
+        }
+        
 {{</details>}}
 
 Esta imagen está hecha aparte y no se calcula dentro del programa, sin embargo es posible realizar un programa que calcule la imagen objetivo a partir de un gif o una serie de imagenes que se quieran visualizar de esta manera.
@@ -190,36 +192,37 @@ Esta imagen está hecha aparte y no se calcula dentro del programa, sin embargo 
 {{< p5-iframe sketch="/showcase/sketches/kinegram.js" width="425" height="445">}}
 
 {{<details Code>}}
-let img;
-let rectSpeed = 0.5;
-let rectLen = 10;
-let spacing = 1.2;
-let y = 0;
+        
+        let img;
+        let rectSpeed = 0.5;
+        let rectLen = 10;
+        let spacing = 1.2;
+        let y = 0;
 
-        function preload() {
-            img = loadImage("/showcase/sketches/assets/kinegram.png");
-        }
+                function preload() {
+                    img = loadImage("/showcase/sketches/assets/kinegram.png");
+                }
 
-        function setup() {
-            createCanvas(400, 420);
-        }
+                function setup() {
+                    createCanvas(400, 420);
+                }
 
-        function draw() {
-            background(255);
-            image(img,0,0);
-            for(let i = -height/rectLen; i < 0; i+=spacing){
-                fill("black");
-                rect(0,i*rectLen+y,width,rectLen);
-            }
-            y += rectSpeed;
-            if ((-height+y) >= height) {
-                y = 0;
-            }
-            if(mouseIsPressed){
-                background(255);
-                image(img,0,0);
-            }
-        }
+                function draw() {
+                    background(255);
+                    image(img,0,0);
+                    for(let i = -height/rectLen; i < 0; i+=spacing){
+                        fill("black");
+                        rect(0,i*rectLen+y,width,rectLen);
+                    }
+                    y += rectSpeed;
+                    if ((-height+y) >= height) {
+                        y = 0;
+                    }
+                    if(mouseIsPressed){
+                        background(255);
+                        image(img,0,0);
+                    }
+                }
 
 {{</details>}}
 
