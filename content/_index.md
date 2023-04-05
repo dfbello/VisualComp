@@ -24,3 +24,6 @@ En esta página se encuentran los ejercicios correspondientes a la materia de co
 * Jean Pierre Charalambos
 {{< /hint >}}
 
+## Video explicación Visual Illusions
+
+[<p style="text-align: center;">**Video de la primera entrega (Visual Illusions)**</p>](https://drive.google.com/file/d/15EPzJ8YKnrpl0rAy5sxIN5ybIEPVIcXu/view) 

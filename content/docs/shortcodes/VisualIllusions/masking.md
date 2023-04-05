@@ -154,7 +154,9 @@ El siguiente kinegrama se genera a partir de una imágen preestablecida que se m
         }
 {{</details>}}
 
-Esta imagen está hecha aparte y no se calcula dentro del programa, sin embargo es posible realiar un programa que calcule la imagen objetivo a partir de un gif o una serie de imagenes que se quieran visualizar de esta manera.
+Esta imagen está hecha aparte y no se calcula dentro del programa, sin embargo es posible realizar un programa que calcule la imagen objetivo a partir de un gif o una serie de imagenes que se quieran visualizar de esta manera.
+
+{{< p5-iframe sketch="/showcase/sketches/kinegram.js" width="425" height="445">}}
 
 {{<details Code>}}
         let img;
@@ -189,7 +191,6 @@ Esta imagen está hecha aparte y no se calcula dentro del programa, sin embargo 
         }
 {{</details>}}
 
-{{< p5-iframe sketch="/showcase/sketches/kinegram.js" width="425" height="445">}}
 
 ### Dithering
 
