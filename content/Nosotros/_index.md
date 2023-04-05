@@ -5,12 +5,20 @@ menu:
     weight: 1
 title: Nosotros
 ---
+
 # Integrantes
+
 El grupo de trabajo que desarrolló este proyecto se encuentra compuesto por:
 
 ## **Santiago Arias Bareño**
 
-Estudiante de Ingeniería de Sistemas y Computación @ Universidad Nacional de Colombia
+Estudiante de Ingeniería de Sistemas y Computación @ Universidad Nacional de Colombia.
+Interesado en el desarrollo de software y la gerencia de proyectos de software.
+
+Actualmente trabajo como Sr Android Developer, es algo que me apasiona y disfruto bastante.
+
+En cuanto al curso espero seguir aprendiendo a hacer este tipo de trabajos graficos que son sencillos de generar pero que se ven impresionantes.
+[Github](https://github.com/Saariasba)
 
 ## **Diego Fernando Bello López**
 
@@ -28,7 +36,6 @@ Dentro del curso aspiro a aprender mucho de un tema que no se trata mucho dentro
 
 Me interesan en general los temas de desarrollo de software, sobre todo en la parte de backend y la seguridad de la información, sin embargo me apasionan la gran mayoría de temas relacioandos con el mundo de la computación y siempre estoy interesado en aprender cosas nuevas y descubrir nuevos gustos.
 
-En mi vida personal me gustam los videojuegos, leer libros de ciencia ficción o distopías y ver películas y series de drama, policiacas, ciencia ficción entre otras. 
+En mi vida personal me gustam los videojuegos, leer libros de ciencia ficción o distopías y ver películas y series de drama, policiacas, ciencia ficción entre otras.
 
 Visita mi [Github](https://github.com/dzambranob)
-
