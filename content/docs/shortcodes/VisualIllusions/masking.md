@@ -189,8 +189,6 @@ Esta imagen está hecha aparte y no se calcula dentro del programa, sin embargo 
 
 {{< p5-iframe sketch="/showcase/sketches/kinegram.js" width="425" height="445">}}
 
-{{< p5-iframe sketch="/showcase/sketches/kinegram.js" width="425" height="445">}}
-
 {{<details Code>}}
 let img;
 let rectSpeed = 0.5;
@@ -225,7 +223,7 @@ let y = 0;
 
 {{</details>}}
 
-#### Dithering
+### Dithering
 
 El dithering es una forma intencional de aplicar ruido, usada para aleatorizar el error de cuantificación y de esta manera evitar patrones a gran escala como color banding en las imágenes. Dither es utilizado en diferentes campos donde ocurre procesamiento y análisis de señales digitales.
 
