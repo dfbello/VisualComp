@@ -18,17 +18,17 @@ const SAMPLE_RES = 100;
 
 function preload() {
   //Target video and image
-  image_src = loadImage("/showcase/sketches/assets/jordan.jpg");
-  video_src = createVideo(["/showcase/sketches/assets/imola.mp4"]);
+  image_src = loadImage("/showcase/sketches/assets/f1cars/jordan.jpg");
+  video_src = createVideo(["/showcase/sketches/assets/f1cars/imola.mp4"]);
   video_src.hide();
-  mosaic = readShader("/showcase/sketches/shaders/photomosaic.frag");
+  mosaic = readShader("/showcase/sketches/shaders/photomosaic/photomosaic.frag");
   //Image Palette
   p = [];
   for (let i = 1; i <= 36; i++) {
     if (i.toString().length == 1) {
-      p.push(loadImage(`/showcase/sketches/assets/00${i}.jpg`));
+      p.push(loadImage(`/showcase/sketches/assets/f1cars/00${i}.jpg`));
     } else {
-      p.push(loadImage(`/showcase/sketches/assets/0${i}.jpg`));
+      p.push(loadImage(`/showcase/sketches/assets/f1cars/0${i}.jpg`));
     }
   }
 }
