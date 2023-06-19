@@ -1,0 +1,545 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Image processing # Intro and Background # El uso de máscaras de convolución o el proceso de masking desempeña un papel fundamental en el ámbito del procesamiento de imágenes, ya que permite aplicar diversos efectos como desenfoque, nitidez, relieve, detección de bordes, entre otros. Estas máscaras son utilizadas para modificar la apariencia de una imagen mediante la convolución de una matriz de pesos sobre los píxeles de la imagen original."><meta name=theme-color content="#FFFFFF"><meta name=color-scheme content="light dark"><meta property="og:title" content><meta property="og:description" content="Image processing # Intro and Background # El uso de máscaras de convolución o el proceso de masking desempeña un papel fundamental en el ámbito del procesamiento de imágenes, ya que permite aplicar diversos efectos como desenfoque, nitidez, relieve, detección de bordes, entre otros. Estas máscaras son utilizadas para modificar la apariencia de una imagen mediante la convolución de una matriz de pesos sobre los píxeles de la imagen original."><meta property="og:type" content="article"><meta property="og:url" content="https://visualcgroup.github.io/showcase/docs/shortcodes/Shaders/imageProcessing/"><meta property="article:section" content="docs"><meta property="article:modified_time" content="2023-06-19T16:50:36-05:00"><title>Image Processing | Computación Visual</title><link rel=manifest href=/showcase/manifest.json><link rel=icon href=/showcase/favicon.png type=image/x-icon><link rel=stylesheet href=/showcase/book.min.a82d7e77ceb134d151c4d7e381eeb30623fbd5a524d58c584d8716ecec0205bd.css integrity="sha256-qC1+d86xNNFRxNfjge6zBiP71aUk1YxYTYcW7OwCBb0=" crossorigin=anonymous><script defer src=/showcase/flexsearch.min.js></script>
+<script defer src=/showcase/en.search.min.3a8d658c77eb93c7f12a2b8af49a700131e474f288eefb605d9fa61576dbe5a7.js integrity="sha256-Oo1ljHfrk8fxKiuK9JpwATHkdPKI7vtgXZ+mFXbb5ac=" crossorigin=anonymous></script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=/showcase/><span>Computación Visual</span></a></h2><div class=book-search><input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><ul><li class=book-section-flat><span>Shortcodes</span><ul><li><input type=checkbox id=section-5868e46333d171e79d100a0c490c26a1 class=toggle>
+<label for=section-5868e46333d171e79d100a0c490c26a1 class="flex justify-between"><a href=/showcase/docs/shortcodes/3D/>3 D</a></label><ul><li><a href=/showcase/docs/shortcodes/3D/donut/>Donut</a></li></ul></li><li><input type=checkbox id=section-d200ae8d5104b797f81d670a6f628a3f class=toggle>
+<label for=section-d200ae8d5104b797f81d670a6f628a3f class="flex justify-between"><a href=/showcase/docs/shortcodes/VisualIllusions/>Visual Illusions</a></label><ul><li><a href=/showcase/docs/shortcodes/VisualIllusions/coloring/>Coloring</a></li><li><a href=/showcase/docs/shortcodes/VisualIllusions/machBands/>Mach Bands</a></li><li><a href=/showcase/docs/shortcodes/VisualIllusions/masking/>Masking</a></li><li><a href=/showcase/docs/shortcodes/VisualIllusions/depthPerception/>Depth Perception</a></li></ul></li><li><input type=checkbox id=section-37d133451a87125afc7e4d4a60cdb12b class=toggle checked>
+<label for=section-37d133451a87125afc7e4d4a60cdb12b class="flex justify-between"><a href=/showcase/docs/shortcodes/Shaders/>Shaders</a></label><ul><li><a href=/showcase/docs/shortcodes/Shaders/coloring/>Coloring</a></li><li><a href=/showcase/docs/shortcodes/Shaders/texturing/>Texturing</a></li><li><a href=/showcase/docs/shortcodes/Shaders/imageProcessing/ class=active>Image Processing</a></li><li><a href=/showcase/docs/shortcodes/Shaders/proceduralTexturing/>Procedural Texturing</a></li><li><a href=/showcase/docs/shortcodes/Shaders/spatialCoherence/>Spatial Coherence</a></li></ul></li></ul></li></ul><ul><li><a href=/showcase/Nosotros/>Nosotros</a></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/showcase/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Image Processing</strong>
+<label for=toc-control><img src=/showcase/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#image-processing>Image processing</a><ul><li><a href=#intro-and-background>Intro and Background</a><ul><li></li></ul></li><li><a href=#code-and-results>Code and Results</a></li><li><a href=#conclusions-and-future-work>Conclusions and Future work</a></li></ul></li></ul></nav></aside></header><article class=markdown><h1 id=image-processing>Image processing
+<a class=anchor href=#image-processing>#</a></h1><h2 id=intro-and-background>Intro and Background
+<a class=anchor href=#intro-and-background>#</a></h2><p>El uso de máscaras de convolución o el proceso de masking desempeña un papel fundamental en el ámbito del procesamiento de imágenes, ya que permite aplicar diversos efectos como desenfoque, nitidez, relieve, detección de bordes, entre otros. Estas máscaras son utilizadas para modificar la apariencia de una imagen mediante la convolución de una matriz de pesos sobre los píxeles de la imagen original.</p><p>Asimismo, las herramientas de ampliamiento de imágenes son empleadas en los computadores actuales, ya que permiten aumentar o reducir el tamaño de secciones específicas de una imagen. Estas herramientas son útiles para ajustar y retocar imágenes, mejorando la calidad visual y adaptándolas a diferentes propósitos.</p><p>En el desarrollo de la herramienta de ampliación de imágenes, se busca aumentar el tamaño aparente de una imagen sin alterar su perspectiva. Esta ampliación se mide mediante un número denominado &ldquo;aumento&rdquo;, que representa la proporción entre el tamaño resultante y el tamaño original.</p><p>Por último, las herramientas de luminosidad de color desempeñan un papel importante al ajustar el brillo de las imágenes a través de la aplicación de distintos modelos de color. Estas herramientas permiten controlar y modificar la intensidad de la luz en una imagen, lo que puede mejorar la visualización y resaltar ciertos detalles.</p><p>Para la herramienta de luminosidad se llevó a cabo la conversión entre el modelo de color RGBA y los siguientes modelos de color:</p><h4 id=luma>Luma:
+<a class=anchor href=#luma>#</a></h4><p>Luma representa el brillo de una imagen (la parte &ldquo;en blanco y negro&rdquo; o acromática de la imagen), es decir, componente que codifica la información de luminosidad de la imagen. Representa la imagen acromática, mientras que los componentes del croma representan la información del color.
+<link rel=stylesheet href=/showcase/katex/katex.min.css><script defer src=/showcase/katex/katex.min.js></script>
+<script defer src=/showcase/katex/auto-render.min.js onload=renderMathInElement(document.body)></script><span>
+\[ Y' = 0.299R + 0.587G + 0.114B\]</span></p><h4 id=hsl--hsv>HSL & HSV:
+<a class=anchor href=#hsl--hsv>#</a></h4><p>HSL (matiz, saturación, luminosidad) y HSV (matiz, saturación, valor; también conocido como HSB, matiz, saturación, brillo) son representaciones alternativas del modelo de color RGB que se ajustan mejor a cómo la visión humana percibe los atributos del color. Estos modelos organizan los colores en una franja radial según su matiz, alrededor de un eje central que va desde el negro en la parte inferior hasta el blanco en la parte superior.</p><p><img src=https://crisvo2024.github.io/showcase/sketches/hsl_hsv.png alt="HSL &amp;amp; HSV coloring models."></p><p>La representación HSL es un modelo que permite entender cómo se combinan diferentes pinturas en el mundo real para crear colores. En este modelo, la luminosidad está relacionada con la presencia de blanco o negro en la mezcla de colores. Por ejemplo, al mezclar un pigmento rojo con pintura blanca se obtiene un &ldquo;rojo claro&rdquo;, ya que la pintura blanca representa un valor alto de luminosidad en el modelo HSL. Los colores saturados se encuentran en un círculo alrededor de un valor de luminosidad de 0.5, mientras que un valor de luminosidad de 0 o 1 indica un color completamente negro o blanco, respectivamente.</p><p>Por otro lado, la representación HSV describe cómo los colores se perciben bajo la luz. La diferencia principal entre HSL y HSV es que, en HSL, el máximo valor de luminosidad corresponde al blanco puro, mientras que en HSV se asemeja a iluminar un objeto de color con luz blanca. Por ejemplo, al iluminar un objeto rojo con una luz blanca brillante, el objeto seguirá pareciendo rojo pero más brillante e intenso. En cambio, al iluminar ese mismo objeto rojo con una luz tenue, se verá más oscuro y menos brillante.</p><p><strong>Conversión RGB a HSL:</strong>
+<span>\[ Cmax = max(R, G, B)\\
+Cmin = min(R, G, B)\\
+\Delta = Cmax - Cmin\]</span></p><p>Calculo de la luminosidad:
+<span>\[ L = \frac{(Cmax+Cmin)}{2}\]</span></p><p>Calculo de la tonalidad (Hue):
+<span>\[ H =
+\left\{
+\begin{array}{lr}
+0^\circ, & \text{if } \Delta = 0\\
+60^\circ * (\frac{G-B}{\Delta}mod6), & \text{if } Cmax = R\\
+60^\circ * (\frac{B-R}{\Delta}+2), & \text{if } Cmax = G\\
+60^\circ * (\frac{R-G}{\Delta}+4), & \text{if } Cmax = B
+\end{array}
+\right\}\]</span></p><p>Calculo de la saturación:
+<span>\[ S =
+\left\{
+\begin{array}{lr}
+0^\circ, & \text{if } \Delta = 0\\
+\frac{\Delta}{1-|2L-1|}, & \text{if } Cmax = R
+\end{array}
+\right\}\]</span></p><p><strong>Conversión RGB a HSV:</strong>
+Los calculos para la conversión de RGB a HSV son similares a los de HSL, el componente de tonalidad se calcula de la misma manera.</p><p>Calculo del brillo:
+<span>\[ V = Cmax\]</span></p><p>Calculo de la tonalidad (Hue): igual que en HSL.</p><p>Calculo de la saturación:
+<span>\[ S =
+\left\{
+\begin{array}{lr}
+0^\circ, & \text{if } Cmax = 0\\
+\frac{\Delta}{Cmax}, & \text{if } Cmax \neq 0
+\end{array}
+\right\}\]</span></p><h4 id=cielab>CIELAB:
+<a class=anchor href=#cielab>#</a></h4><p>El espacio de color CIELAB, también conocido como Lab*, fue definido por la Comisión Internacional de Iluminación (CIE) en 1976. Este espacio de color representa el color mediante tres valores: L* para la luminosidad perceptiva, y a* y b* para los componentes de color únicos de la visión humana, como el rojo, verde, azul y amarillo. El objetivo del CIELAB es ser un espacio perceptualmente uniforme, donde un cambio numérico específico se correlaciona con un cambio percibido similar en el color. Aunque no es completamente uniforme en términos de percepción, el espacio CIELAB es útil en la industria para detectar pequeñas diferencias de color.</p><p>Similar al espacio CIEXYZ del cual se deriva, el espacio de color CIELAB es un modelo independiente del dispositivo, conocido como &ldquo;observador estándar&rdquo;. Los colores definidos en este espacio no están relacionados con un dispositivo específico, como un monitor de computadora o una impresora, sino que se basan en los resultados promedio de experimentos de coincidencia de colores realizados en condiciones de laboratorio utilizando el observador estándar de la CIE.</p><p>Para convertir de RGB a CIELAB, es necesario realizar una conversión primero de RGB a CIEXYZ y luego de CIEXYZ a CIELAB, como se indica a continuación.</p><p><strong>RGB a CIEXYZ:</strong>
+<span>\[X_{tmp} = \left\{
+\begin{array}{lr}
+(\frac{R + 0.055}{1.055}^{2.4}), & \text{if } R > 0.04045\\
+R \div 12.92, & \text{otherwise}
+\end{array}
+\right\}\\
+Y_{tmp} = \left\{
+\begin{array}{lr}
+(\frac{G + 0.055}{1.055}^{2.4}), & \text{if } G > 0.04045\\
+G \div 12.92, & \text{otherwise}
+\end{array}
+\right\}\\
+Z_{tmp} = \left\{
+\begin{array}{lr}
+(\frac{B + 0.055}{1.055}^{2.4}), & \text{if } B > 0.04045\\
+B \div 12.92, & \text{otherwise}
+\end{array}
+\right\}\\\]</span></p><p>Finalmente tenemos:</p><span>\[\begin{bmatrix}
+X\\
+Y\\
+Z
+\end{bmatrix} =
+100 *
+\begin{bmatrix}
+X_{tmp}\\
+Y_{tmp}\\
+Z_{tmp}
+\end{bmatrix} *
+\begin{bmatrix}
+0.4124 & 0.3576 & 0.1805\\
+0.2126 & 0.7152 & 0.0722\\
+0.0193 & 0.1192 & 0.9505
+\end{bmatrix}\]</span><p><strong>CIEXYZ a CIELAB:</strong></p><p><span>\[n = \begin{bmatrix}
+X\\
+Y\\
+Z
+\end{bmatrix} \ div
+\begin{bmatrix}
+95.047\\
+100\\
+108.883
+\end{bmatrix}\\\]</span>
+Definimos un vextor <strong>v</strong> de tamaño 3 de tal manera que cada una de sus componentes se definen como:</p><span>\[v_0 = \left\{
+\begin{array}{lr}
+n_0^{\frac{1}{3}}, & \text{if } n_0 > 0.008856\\
+( 7.787 * n_0 ) + ( \frac{16.0}{116.0} ), & \text{otherwise}
+\end{array}
+\right\}\\
+v_1 = \left\{
+\begin{array}{lr}
+n_1^{\frac{1}{3}}, & \text{if } n_1 > 0.008856\\
+( 7.787 * n_1 ) + ( \frac{16.0}{116.0} ), & \text{otherwise}
+\end{array}
+\right\}\\
+v_0 = \left\{
+\begin{array}{lr}
+n_2^{\frac{1}{3}}, & \text{if } n_2 > 0.008856\\
+( 7.787 * n_2 ) + ( \frac{16.0}{116.0} ), & \text{otherwise}
+\end{array}
+\right\}\]</span><p>Finalmente el resultado sería:
+<span>\[\begin{bmatrix}
+L\\
+A\\
+B
+\end{bmatrix} =
+\begin{bmatrix}
+( 116.0 * v_1 ) - 16.0\\
+500.0 * ( v_0 - v_1 )\\
+200.0 * ( v_1 - v_2 )
+\end{bmatrix}\]</span></p><h2 id=code-and-results>Code and Results
+<a class=anchor href=#code-and-results>#</a></h2><blockquote class="book-hint info"><p><strong>Exercise</strong></br>Implement an image / video processing app supporting different masks, including other kernel sizes different than 3x3, and:</p><ul><li>A region-of-interest base tool to selectively apply a given mask.Hint: circular regions around the mouse pointer are handy and quite simple to implement by means of glsl distance.</li><li>A magnifier tool. Requires a bit of research. For instance, look for it in shadertoy.</li><li>Integrate luma and other coloring brightness tools.</br>What other shader tools would you implement?</li></ul></blockquote><p>Dentro del siguiente código se aplicaron todas las características definidas dentro del ejercicio utilizando un shader diferente por cada característica, uno para la región de interés y el ampliamiento de imagen, otro para las máscaras de convolución y otro para las herramientas de luminosidad de color.</p><p>Para el caso de las máscaras de convolución se envía desde el sketch hacia el shader la matriz que define la máscara que será aplicada, para luego iterar sobre cada píxel en la imágen o el video y aplicar esta máscara en este. En caso de solo requerir la región de interés, esta máscara se aplica solo en esta región.</br>Para el caso del ampliamiento de imágen se utilizó el shader disponible en <a href=https://www.shadertoy.com/view/llsSz7>ShaderToy</a>, modificándolo para no aumentar en caso de tener la región de interés.</br>Por último para las herramientas de luminosidad de color, se hace un cambio a cada pixél resultante de la aplicación de las máscaras de convolución depenciendo de la herramienta que se deseara aplicar. En este caso se realiza un cálculo con los colores rgb presentes y se retornan estos valores para ser pintados.</p><blockquote class="book-hint info"><p><strong>Características</strong></p><ul><li>Presiona el checkbox <em>video</em> para cambiar entre la imagen y el video.</li><li>El primer <em>select</em> sirve para seleccionar las diferentes herramientas de luminosidad de color, se puede escoger entre ninguna (None), Luma, HSV, HSL y CIELAB.</li><li>El siguiente <em>select</em> sirve para escoger la máscara de convolución a aplicar, por defecto no se le aplicará ninguna (Identity), pero se puede escoger entre Ridge detection, Sharpen, Blur, Convolution, Unsharp masking y Gaussian blur.</li><li>A continuación se tiene el <em>select</em> entre el ampliamiento de la imagen (Magnifier) o la región de interés (Region of interest)</li><li>Por último se presentan dos <em>sliders</em>, el primero es para modificar el tamaño del circulo que define el magnifier o la región de interés. Y el segundo sirve para modificar el ampliamiento a la imagen en el caso de que esté seleccionada la opción de Magnifier</li></ul></blockquote><iframe id=imgProcessing style=width:625px;height:625px srcdoc="
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js></script>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/addons/p5.sound.min.js></script>
+             <script src=https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js></script> 
+            
+            
+            
+            
+            <script src=/showcase/sketches/imgProcessing.js></script>
+          </head>
+          <body>
+          </body>
+        </html>
+      "></iframe>
+<details><summary>Code</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>maskShader</span>, <span style=color:#a6e22e>mask_pg</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>lensShader</span>, <span style=color:#a6e22e>lens_pg</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>lumaShader</span>, <span style=color:#a6e22e>luma_pg</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>src</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>img_src</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>video_src</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>video_on</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>maskSelect</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>roi</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>luma</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>lenRadius</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>magnification</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>preload</span>() {
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskShader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>readShader</span>(<span style=color:#e6db74>&#39;/showcase/sketches/shaders/imgProcessing/mask.frag&#39;</span>,
+</span></span><span style=display:flex><span>    { <span style=color:#a6e22e>varyings</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>texcoords2</span> });
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lumaShader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>readShader</span>(<span style=color:#e6db74>&#39;/showcase/sketches/shaders/imgProcessing/bright.frag&#39;</span>,
+</span></span><span style=display:flex><span>    { <span style=color:#a6e22e>varyings</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>texcoords2</span> });
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lensShader</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>readShader</span>(<span style=color:#e6db74>&#39;/showcase/sketches/shaders/imgProcessing/lens.frag&#39;</span>,
+</span></span><span style=display:flex><span>    { <span style=color:#a6e22e>varyings</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>Tree</span>.<span style=color:#a6e22e>texcoords2</span> });
+</span></span><span style=display:flex><span><span style=color:#a6e22e>video_src</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createVideo</span>([<span style=color:#e6db74>&#39;/showcase/sketches/assets/mapache.webm&#39;</span>]);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>video_src</span>.<span style=color:#a6e22e>hide</span>();
+</span></span><span style=display:flex><span><span style=color:#a6e22e>img_src</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>loadImage</span>(<span style=color:#e6db74>&#39;/showcase/sketches/assets/aiImage1.jpg&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>src</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>img_src</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>setup</span>() {
+</span></span><span style=display:flex><span><span style=color:#a6e22e>createCanvas</span>(<span style=color:#ae81ff>600</span>, <span style=color:#ae81ff>600</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>mask_pg</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>mask_pg</span>.<span style=color:#a6e22e>colorMode</span>(<span style=color:#a6e22e>RGB</span>, <span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>mask_pg</span>.<span style=color:#a6e22e>textureMode</span>(<span style=color:#a6e22e>NORMAL</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>mask_pg</span>.<span style=color:#a6e22e>shader</span>(<span style=color:#a6e22e>maskShader</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>luma_pg</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>luma_pg</span>.<span style=color:#a6e22e>colorMode</span>(<span style=color:#a6e22e>RGB</span>, <span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>luma_pg</span>.<span style=color:#a6e22e>textureMode</span>(<span style=color:#a6e22e>NORMAL</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>luma_pg</span>.<span style=color:#a6e22e>shader</span>(<span style=color:#a6e22e>lumaShader</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lens_pg</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createGraphics</span>(<span style=color:#a6e22e>width</span>, <span style=color:#a6e22e>height</span>, <span style=color:#a6e22e>WEBGL</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lens_pg</span>.<span style=color:#a6e22e>colorMode</span>(<span style=color:#a6e22e>RGB</span>, <span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lens_pg</span>.<span style=color:#a6e22e>textureMode</span>(<span style=color:#a6e22e>NORMAL</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lens_pg</span>.<span style=color:#a6e22e>shader</span>(<span style=color:#a6e22e>lensShader</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>video_on</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createCheckbox</span>(<span style=color:#e6db74>&#39;video&#39;</span>, <span style=color:#66d9ef>false</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>video_on</span>.<span style=color:#a6e22e>style</span>(<span style=color:#e6db74>&#39;color&#39;</span>, <span style=color:#e6db74>&#39;white&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>video_on</span>.<span style=color:#a6e22e>changed</span>(() =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>src</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>video_on</span>.<span style=color:#a6e22e>checked</span>() <span style=color:#f92672>?</span> <span style=color:#a6e22e>video_src</span> <span style=color:#f92672>:</span> <span style=color:#a6e22e>img_src</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>video_on</span>.<span style=color:#a6e22e>checked</span>() <span style=color:#f92672>?</span> <span style=color:#a6e22e>video_src</span>.<span style=color:#a6e22e>loop</span>() <span style=color:#f92672>:</span> <span style=color:#a6e22e>video_src</span>.<span style=color:#a6e22e>pause</span>();
+</span></span><span style=display:flex><span>});
+</span></span><span style=display:flex><span><span style=color:#a6e22e>video_on</span>.<span style=color:#a6e22e>position</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>10</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>luma</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createSelect</span>();
+</span></span><span style=display:flex><span><span style=color:#a6e22e>luma</span>.<span style=color:#a6e22e>position</span>(<span style=color:#ae81ff>10</span>, <span style=color:#ae81ff>30</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>luma</span>.<span style=color:#a6e22e>option</span>(<span style=color:#e6db74>&#39;None&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>luma</span>.<span style=color:#a6e22e>option</span>(<span style=color:#e6db74>&#39;Luma&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>luma</span>.<span style=color:#a6e22e>option</span>(<span style=color:#e6db74>&#39;HSV value V&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>luma</span>.<span style=color:#a6e22e>option</span>(<span style=color:#e6db74>&#39;HSL lightness L&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>luma</span>.<span style=color:#a6e22e>option</span>(<span style=color:#e6db74>&#39;CIELAB&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskSelect</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createSelect</span>();
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskSelect</span>.<span style=color:#a6e22e>position</span>(<span style=color:#ae81ff>140</span>,<span style=color:#ae81ff>10</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskSelect</span>.<span style=color:#a6e22e>option</span>(<span style=color:#e6db74>&#39;Identity&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskSelect</span>.<span style=color:#a6e22e>option</span>(<span style=color:#e6db74>&#39;Ridge detection&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskSelect</span>.<span style=color:#a6e22e>option</span>(<span style=color:#e6db74>&#39;Sharpen&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskSelect</span>.<span style=color:#a6e22e>option</span>(<span style=color:#e6db74>&#39;Blur&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskSelect</span>.<span style=color:#a6e22e>option</span>(<span style=color:#e6db74>&#39;Convolution&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskSelect</span>.<span style=color:#a6e22e>option</span>(<span style=color:#e6db74>&#39;Unsharp masking (5x5)&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskSelect</span>.<span style=color:#a6e22e>option</span>(<span style=color:#e6db74>&#39;Gaussian Blur (5x5)&#39;</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>roi</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createSelect</span>();
+</span></span><span style=display:flex><span><span style=color:#a6e22e>roi</span>.<span style=color:#a6e22e>position</span>(<span style=color:#ae81ff>140</span>, <span style=color:#ae81ff>30</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>roi</span>.<span style=color:#a6e22e>style</span>(<span style=color:#e6db74>&#39;width&#39;</span>, <span style=color:#e6db74>&#39;160px&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>roi</span>.<span style=color:#a6e22e>option</span>(<span style=color:#e6db74>&#34;Magnifier&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>roi</span>.<span style=color:#a6e22e>option</span>(<span style=color:#e6db74>&#34;Region of interest&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>roi</span>.<span style=color:#a6e22e>input</span>(() =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>roi</span>.<span style=color:#a6e22e>value</span>() <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;Region of interest&#34;</span>){
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>magnification</span>.<span style=color:#a6e22e>attribute</span>(<span style=color:#e6db74>&#39;disabled&#39;</span>, <span style=color:#e6db74>&#39;&#39;</span>);
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>magnification</span>.<span style=color:#a6e22e>removeAttribute</span>(<span style=color:#e6db74>&#39;disabled&#39;</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>})
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lenRadius</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createSlider</span>(<span style=color:#ae81ff>0.1</span>, <span style=color:#ae81ff>0.3</span>, <span style=color:#ae81ff>0.15</span>, <span style=color:#ae81ff>0.01</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lenRadius</span>.<span style=color:#a6e22e>position</span>(<span style=color:#ae81ff>310</span>, <span style=color:#ae81ff>10</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lenRadius</span>.<span style=color:#a6e22e>style</span>(<span style=color:#e6db74>&#39;width&#39;</span>, <span style=color:#e6db74>&#39;80px&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lenRadius</span>.<span style=color:#a6e22e>input</span>(() =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>maskShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;lens_radius&#39;</span>, <span style=color:#a6e22e>lenRadius</span>.<span style=color:#a6e22e>value</span>())
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>lensShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;lens_radius&#39;</span>, <span style=color:#a6e22e>lenRadius</span>.<span style=color:#a6e22e>value</span>())
+</span></span><span style=display:flex><span>    });
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;lens_radius&#39;</span>, <span style=color:#a6e22e>lenRadius</span>.<span style=color:#a6e22e>value</span>());
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lensShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;lens_radius&#39;</span>, <span style=color:#a6e22e>lenRadius</span>.<span style=color:#a6e22e>value</span>());
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>magnification</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createSlider</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>0</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>magnification</span>.<span style=color:#a6e22e>position</span>(<span style=color:#ae81ff>310</span>, <span style=color:#ae81ff>30</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>magnification</span>.<span style=color:#a6e22e>style</span>(<span style=color:#e6db74>&#39;width&#39;</span>, <span style=color:#e6db74>&#39;80px&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>magnification</span>.<span style=color:#a6e22e>input</span>(() =&gt; {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>lensShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;magnification&#39;</span>, <span style=color:#a6e22e>magnification</span>.<span style=color:#a6e22e>value</span>())
+</span></span><span style=display:flex><span>    });
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lensShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;magnification&#39;</span>, <span style=color:#a6e22e>magnification</span>.<span style=color:#a6e22e>value</span>());
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>draw</span>() {
+</span></span><span style=display:flex><span><span style=color:#a6e22e>emitTexOffset</span>(<span style=color:#a6e22e>maskShader</span>, <span style=color:#a6e22e>src</span>, [<span style=color:#a6e22e>uniform</span> <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;texOffset&#39;</span>])
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;mask&#39;</span>, <span style=color:#a6e22e>maskChange</span>());
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;customLen&#39;</span>, <span style=color:#a6e22e>maskChange</span>().<span style=color:#a6e22e>length</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>mask_pg</span>.<span style=color:#a6e22e>emitResolution</span>(<span style=color:#a6e22e>maskShader</span>, <span style=color:#e6db74>&#39;iResolution&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>mask_pg</span>.<span style=color:#a6e22e>emitPointerPosition</span>(<span style=color:#a6e22e>maskShader</span>, <span style=color:#a6e22e>mouseX</span>, <span style=color:#a6e22e>mouseY</span>, <span style=color:#e6db74>&#39;iMouse&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;roi&#39;</span>, <span style=color:#a6e22e>roi</span>.<span style=color:#a6e22e>value</span>() <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;Region of interest&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>maskShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>src</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pg</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>mask_pg</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pg</span>.<span style=color:#a6e22e>quad</span>(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lumaShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;brightTool&#39;</span>, <span style=color:#a6e22e>lumaChange</span>());
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lumaShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>pg</span>)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pg</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>luma_pg</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pg</span>.<span style=color:#a6e22e>quad</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lens_pg</span>.<span style=color:#a6e22e>emitResolution</span>(<span style=color:#a6e22e>lensShader</span>, <span style=color:#e6db74>&#39;iResolution&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lens_pg</span>.<span style=color:#a6e22e>emitPointerPosition</span>(<span style=color:#a6e22e>lensShader</span>, <span style=color:#a6e22e>mouseX</span>, <span style=color:#a6e22e>mouseY</span>, <span style=color:#e6db74>&#39;iMouse&#39;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lensShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;roi&#39;</span>, <span style=color:#a6e22e>roi</span>.<span style=color:#a6e22e>value</span>() <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;Region of interest&#34;</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>lensShader</span>.<span style=color:#a6e22e>setUniform</span>(<span style=color:#e6db74>&#39;texture&#39;</span>, <span style=color:#a6e22e>pg</span>)
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pg</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>lens_pg</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>pg</span>.<span style=color:#a6e22e>quad</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>1</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>image</span>(<span style=color:#a6e22e>pg</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>maskChange</span> (){
+</span></span><span style=display:flex><span><span style=color:#66d9ef>switch</span> (<span style=color:#a6e22e>maskSelect</span>.<span style=color:#a6e22e>value</span>()) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;Identity&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>matrix</span> <span style=color:#f92672>=</span> [<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>,
+</span></span><span style=display:flex><span>                <span style=color:#ae81ff>0</span>,  <span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>,
+</span></span><span style=display:flex><span>                <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span> ];
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;Ridge detection&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>matrix</span> <span style=color:#f92672>=</span> [<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>                <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>8</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>                <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> ]; 
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;Sharpen&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>matrix</span> <span style=color:#f92672>=</span> [ <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span>,
+</span></span><span style=display:flex><span>                <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>5</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,
+</span></span><span style=display:flex><span>                <span style=color:#ae81ff>0</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>0</span> ]; 
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;Blur&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>matrix</span> <span style=color:#f92672>=</span> [ <span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>9</span>, <span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>9</span>, <span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>9</span>,
+</span></span><span style=display:flex><span>                <span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>9</span>,  <span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>9</span>, <span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>9</span>,
+</span></span><span style=display:flex><span>                <span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>9</span>, <span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>9</span>, <span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>9</span> ]; 
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;Convolution&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>matrix</span> <span style=color:#f92672>=</span> [ <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> ,
+</span></span><span style=display:flex><span>                <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>,  <span style=color:#ae81ff>9</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> ,
+</span></span><span style=display:flex><span>                <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> ];    
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;Unsharp masking (5x5)&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>matrix</span> <span style=color:#f92672>=</span> [ <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>6</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>,
+</span></span><span style=display:flex><span>            <span style=color:#f92672>-</span><span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>16</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>24</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>16</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>,
+</span></span><span style=display:flex><span>            <span style=color:#f92672>-</span><span style=color:#ae81ff>6</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>24</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>476</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>24</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>6</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, 
+</span></span><span style=display:flex><span>            <span style=color:#f92672>-</span><span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>16</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>24</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>16</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>,
+</span></span><span style=display:flex><span>            <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>6</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>]; 
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;Gaussian Blur (5x5)&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>matrix</span> <span style=color:#f92672>=</span> [ <span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>,  <span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>,  <span style=color:#ae81ff>6</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>,  <span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>,
+</span></span><span style=display:flex><span>                <span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>16</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>24</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>16</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>,
+</span></span><span style=display:flex><span>                <span style=color:#ae81ff>6</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>24</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>36</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>24</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>6</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>,
+</span></span><span style=display:flex><span>                <span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>16</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>24</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>16</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>,
+</span></span><span style=display:flex><span>                <span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>,  <span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>,  <span style=color:#ae81ff>6</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>,  <span style=color:#ae81ff>4</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span>, <span style=color:#ae81ff>1</span><span style=color:#f92672>/</span><span style=color:#ae81ff>256</span> ];
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>return</span> <span style=color:#a6e22e>matrix</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>lumaChange</span>(){
+</span></span><span style=display:flex><span><span style=color:#66d9ef>switch</span>(<span style=color:#a6e22e>luma</span>.<span style=color:#a6e22e>value</span>()){
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;None&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>1</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;Luma&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>2</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;HSV value V&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>3</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;HSL lightness L&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>4</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>case</span> <span style=color:#e6db74>&#39;CIELAB&#39;</span><span style=color:#f92672>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>5</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></details><details><summary>Shader-bright.frag</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#a6e22e>precision</span> <span style=color:#a6e22e>mediump</span> <span style=color:#66d9ef>float</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// uniforms are defined and sent by the sketch
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>uniform</span> <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>brightTool</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>sampler2D</span> <span style=color:#a6e22e>texture</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// texture space normalized interpolated texture coordinates
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// should have same name and type as in vertex shader
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>varying</span> <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>texcoords2</span>; <span style=color:#75715e>// (defined in [0..1] ∈ R)
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>get_hs</span>(<span style=color:#66d9ef>float</span> <span style=color:#a6e22e>r</span>, <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>g</span>, <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>b</span>, <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>cMax</span>, <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>cMin</span>, <span style=color:#a6e22e>bool</span> <span style=color:#a6e22e>flag</span>, <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>val</span>) {
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>h</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.0</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>s</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.0</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> ( <span style=color:#a6e22e>cMax</span> <span style=color:#f92672>&gt;</span> <span style=color:#a6e22e>cMin</span> ) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>cDelta</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>cMax</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>cMin</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span>(<span style=color:#a6e22e>flag</span>){
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>s</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>val</span> <span style=color:#f92672>&lt;</span> .<span style=color:#ae81ff>0</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>cDelta</span> <span style=color:#f92672>/</span> ( <span style=color:#a6e22e>cMax</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>cMin</span> ) <span style=color:#f92672>:</span> <span style=color:#a6e22e>cDelta</span> <span style=color:#f92672>/</span> ( <span style=color:#ae81ff>2.0</span> <span style=color:#f92672>-</span> ( <span style=color:#a6e22e>cMax</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>cMin</span> ) );
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>s</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>cMax</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>0.0</span> <span style=color:#f92672>?</span> <span style=color:#ae81ff>0.0</span> <span style=color:#f92672>:</span> <span style=color:#a6e22e>cDelta</span> <span style=color:#f92672>/</span> <span style=color:#a6e22e>cMax</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> ( <span style=color:#a6e22e>r</span> <span style=color:#f92672>==</span> <span style=color:#a6e22e>cMax</span> ) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>h</span> <span style=color:#f92672>=</span> ( <span style=color:#a6e22e>g</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>b</span> ) <span style=color:#f92672>/</span> <span style=color:#a6e22e>cDelta</span>;
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> ( <span style=color:#a6e22e>g</span> <span style=color:#f92672>==</span> <span style=color:#a6e22e>cMax</span> ) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>h</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>2.0</span> <span style=color:#f92672>+</span> ( <span style=color:#a6e22e>b</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>r</span> ) <span style=color:#f92672>/</span> <span style=color:#a6e22e>cDelta</span>;
+</span></span><span style=display:flex><span>    } <span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>h</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>4.0</span> <span style=color:#f92672>+</span> ( <span style=color:#a6e22e>r</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>g</span> ) <span style=color:#f92672>/</span> <span style=color:#a6e22e>cDelta</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> ( <span style=color:#a6e22e>h</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0.0</span>) {
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>h</span> <span style=color:#f92672>+=</span> <span style=color:#ae81ff>6.0</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>h</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>h</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>6.0</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span><span style=color:#66d9ef>return</span> <span style=color:#a6e22e>h</span>, <span style=color:#a6e22e>s</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// returns hls of given texel
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>apply_hsl</span>(<span style=color:#a6e22e>vec3</span> <span style=color:#a6e22e>texel</span>) {
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>r</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>r</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>g</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>g</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>b</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>cMin</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>min</span>( <span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>min</span>( <span style=color:#a6e22e>g</span>, <span style=color:#a6e22e>b</span> ) );
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>cMax</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>max</span>( <span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>max</span>( <span style=color:#a6e22e>g</span>, <span style=color:#a6e22e>b</span> ) );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>l</span> <span style=color:#f92672>=</span> ( <span style=color:#a6e22e>cMax</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>cMin</span> ) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2.0</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>h</span>, <span style=color:#a6e22e>s</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>get_hs</span>(<span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>g</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>cMax</span>, <span style=color:#a6e22e>cMin</span>, <span style=color:#66d9ef>true</span>, <span style=color:#a6e22e>l</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>return</span> <span style=color:#a6e22e>h</span>, <span style=color:#a6e22e>s</span>, <span style=color:#a6e22e>l</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// returns hsv of given texel
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>apply_hsv</span>(<span style=color:#a6e22e>vec3</span> <span style=color:#a6e22e>texel</span>) {
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>r</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>r</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>g</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>g</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>b</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>b</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>cMin</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>min</span>( <span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>min</span>( <span style=color:#a6e22e>g</span>, <span style=color:#a6e22e>b</span> ) );
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>cMax</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>max</span>( <span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>max</span>( <span style=color:#a6e22e>g</span>, <span style=color:#a6e22e>b</span> ) );
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>v</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>cMax</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>float</span> <span style=color:#a6e22e>h</span>, <span style=color:#a6e22e>s</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>get_hs</span>(<span style=color:#a6e22e>r</span>, <span style=color:#a6e22e>g</span>, <span style=color:#a6e22e>b</span>, <span style=color:#a6e22e>cMax</span>, <span style=color:#a6e22e>cMin</span>, <span style=color:#66d9ef>false</span>, <span style=color:#a6e22e>v</span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>return</span> <span style=color:#a6e22e>h</span>, <span style=color:#a6e22e>s</span>, <span style=color:#a6e22e>v</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// ------------------------- RGB TO CIELAB -------------------
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>vec3</span> <span style=color:#a6e22e>rgb2xyz</span> (<span style=color:#a6e22e>vec3</span> <span style=color:#a6e22e>texel</span>) {
+</span></span><span style=display:flex><span><span style=color:#a6e22e>vec3</span> <span style=color:#a6e22e>tmp</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>tmp</span>.<span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> ( <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>r</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0.04045</span> ) <span style=color:#f92672>?</span> <span style=color:#a6e22e>pow</span>( ( <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>r</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.055</span> ) <span style=color:#f92672>/</span> <span style=color:#ae81ff>1.055</span>, <span style=color:#ae81ff>2.4</span> ) <span style=color:#f92672>:</span> <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>r</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>12.92</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>tmp</span>.<span style=color:#a6e22e>y</span> <span style=color:#f92672>=</span> ( <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>g</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0.04045</span> ) <span style=color:#f92672>?</span> <span style=color:#a6e22e>pow</span>( ( <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>g</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.055</span> ) <span style=color:#f92672>/</span> <span style=color:#ae81ff>1.055</span>, <span style=color:#ae81ff>2.4</span> ) <span style=color:#f92672>:</span> <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>g</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>12.92</span>,
+</span></span><span style=display:flex><span><span style=color:#a6e22e>tmp</span>.<span style=color:#a6e22e>z</span> <span style=color:#f92672>=</span> ( <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>b</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0.04045</span> ) <span style=color:#f92672>?</span> <span style=color:#a6e22e>pow</span>( ( <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>b</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.055</span> ) <span style=color:#f92672>/</span> <span style=color:#ae81ff>1.055</span>, <span style=color:#ae81ff>2.4</span> ) <span style=color:#f92672>:</span> <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>b</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>12.92</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>mat3</span> <span style=color:#a6e22e>mat</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>mat3</span>(
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>0.4124</span>, <span style=color:#ae81ff>0.3576</span>, <span style=color:#ae81ff>0.1805</span>,
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>0.2126</span>, <span style=color:#ae81ff>0.7152</span>, <span style=color:#ae81ff>0.0722</span>,
+</span></span><span style=display:flex><span>    <span style=color:#ae81ff>0.0193</span>, <span style=color:#ae81ff>0.1192</span>, <span style=color:#ae81ff>0.9505</span> 
+</span></span><span style=display:flex><span>);
+</span></span><span style=display:flex><span><span style=color:#66d9ef>return</span> <span style=color:#ae81ff>100.0</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>tmp</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>mat</span>;
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>vec3</span> <span style=color:#a6e22e>xyz2lab</span> (<span style=color:#a6e22e>vec3</span> <span style=color:#a6e22e>xyz</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>vec3</span> <span style=color:#a6e22e>n</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>xyz</span> <span style=color:#f92672>/</span> <span style=color:#a6e22e>vec3</span>(<span style=color:#ae81ff>95.047</span>, <span style=color:#ae81ff>100</span>, <span style=color:#ae81ff>108.883</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>vec3</span> <span style=color:#a6e22e>v</span>;
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>v</span>.<span style=color:#a6e22e>x</span> <span style=color:#f92672>=</span> ( <span style=color:#a6e22e>n</span>.<span style=color:#a6e22e>x</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0.008856</span> ) <span style=color:#f92672>?</span> <span style=color:#a6e22e>pow</span>( <span style=color:#a6e22e>n</span>.<span style=color:#a6e22e>x</span>, <span style=color:#ae81ff>1.0</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>3.0</span> ) <span style=color:#f92672>:</span> ( <span style=color:#ae81ff>7.787</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>n</span>.<span style=color:#a6e22e>x</span> ) <span style=color:#f92672>+</span> ( <span style=color:#ae81ff>16.0</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>116.0</span> );
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>v</span>.<span style=color:#a6e22e>y</span> <span style=color:#f92672>=</span> ( <span style=color:#a6e22e>n</span>.<span style=color:#a6e22e>y</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0.008856</span> ) <span style=color:#f92672>?</span> <span style=color:#a6e22e>pow</span>( <span style=color:#a6e22e>n</span>.<span style=color:#a6e22e>y</span>, <span style=color:#ae81ff>1.0</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>3.0</span> ) <span style=color:#f92672>:</span> ( <span style=color:#ae81ff>7.787</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>n</span>.<span style=color:#a6e22e>y</span> ) <span style=color:#f92672>+</span> ( <span style=color:#ae81ff>16.0</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>116.0</span> );
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>v</span>.<span style=color:#a6e22e>z</span> <span style=color:#f92672>=</span> ( <span style=color:#a6e22e>n</span>.<span style=color:#a6e22e>z</span> <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0.008856</span> ) <span style=color:#f92672>?</span> <span style=color:#a6e22e>pow</span>( <span style=color:#a6e22e>n</span>.<span style=color:#a6e22e>z</span>, <span style=color:#ae81ff>1.0</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>3.0</span> ) <span style=color:#f92672>:</span> ( <span style=color:#ae81ff>7.787</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>n</span>.<span style=color:#a6e22e>z</span> ) <span style=color:#f92672>+</span> ( <span style=color:#ae81ff>16.0</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>116.0</span> );
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>vec3</span>(( <span style=color:#ae81ff>116.0</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>v</span>.<span style=color:#a6e22e>y</span> ) <span style=color:#f92672>-</span> <span style=color:#ae81ff>16.0</span>, <span style=color:#ae81ff>500.0</span> <span style=color:#f92672>*</span> ( <span style=color:#a6e22e>v</span>.<span style=color:#a6e22e>x</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>v</span>.<span style=color:#a6e22e>y</span> ), <span style=color:#ae81ff>200.0</span> <span style=color:#f92672>*</span> ( <span style=color:#a6e22e>v</span>.<span style=color:#a6e22e>y</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>v</span>.<span style=color:#a6e22e>z</span> ));
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>vec3</span> <span style=color:#a6e22e>apply_lab</span>(<span style=color:#a6e22e>vec3</span> <span style=color:#a6e22e>texel</span>){
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>xyz2lab</span>(<span style=color:#a6e22e>rgb2xyz</span>(<span style=color:#a6e22e>texel</span>));
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// returns luma of given texel
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>vec3</span> <span style=color:#a6e22e>luma</span>(<span style=color:#a6e22e>vec4</span> <span style=color:#a6e22e>texel</span>) { 
+</span></span><span style=display:flex><span><span style=color:#75715e>//Luma
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>brightTool</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>2.0</span>){
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>vec3</span>(<span style=color:#ae81ff>0.299</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>r</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.587</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>g</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.114</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>b</span>);}
+</span></span><span style=display:flex><span><span style=color:#75715e>//HSV value V
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>brightTool</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>3.0</span>){
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>vec3</span>(<span style=color:#a6e22e>apply_hsv</span>(<span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>rgb</span>));}
+</span></span><span style=display:flex><span><span style=color:#75715e>//HSL lightness L
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>brightTool</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>4.0</span>){
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>vec3</span>(<span style=color:#a6e22e>apply_hsl</span>(<span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>rgb</span>));}
+</span></span><span style=display:flex><span><span style=color:#75715e>//CIELAB
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>brightTool</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>5.0</span>){
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>apply_lab</span>(<span style=color:#a6e22e>texel</span>.<span style=color:#a6e22e>rgb</span>);}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span><span style=color:#75715e>// texture2D(texture, texcoords2) samples texture at texcoords2 
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// and returns the normalized texel color
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>vec4</span> <span style=color:#a6e22e>texel</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>texture2D</span>(<span style=color:#a6e22e>texture</span>, <span style=color:#a6e22e>texcoords2</span>);
+</span></span><span style=display:flex><span><span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>brightTool</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>1.0</span> <span style=color:#f92672>?</span> <span style=color:#a6e22e>texel</span> <span style=color:#f92672>:</span> <span style=color:#a6e22e>vec4</span>(<span style=color:#a6e22e>luma</span>(<span style=color:#a6e22e>texel</span>), <span style=color:#ae81ff>1.0</span>);
+</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></details><details><summary>Shader-lens.frag</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#a6e22e>precision</span> <span style=color:#a6e22e>mediump</span> <span style=color:#66d9ef>float</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>sampler2D</span> <span style=color:#a6e22e>texture</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>varying</span> <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>texcoords2</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>iResolution</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>iMouse</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>lens_radius</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>magnification</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>bool</span> <span style=color:#a6e22e>roi</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Inspired by https://www.shadertoy.com/view/4tdXDl.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>()
+</span></span><span style=display:flex><span>{   
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>uv</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>gl_FragCoord</span>.<span style=color:#a6e22e>xy</span> <span style=color:#f92672>/</span> <span style=color:#a6e22e>iResolution</span>.<span style=color:#a6e22e>y</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//at the beginning of the sketch, center the magnifying glass.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>//Thanks to FabriceNeyret2 for the suggestion
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>mouse</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>iMouse</span>.<span style=color:#a6e22e>xy</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>mouse</span> <span style=color:#f92672>==</span> <span style=color:#a6e22e>vec2</span>(<span style=color:#ae81ff>0.0</span>))
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>mouse</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>iResolution</span>.<span style=color:#a6e22e>xy</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2.0</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//UV coordinates of mouse
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>mouse_uv</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>mouse</span> <span style=color:#f92672>/</span> <span style=color:#a6e22e>iResolution</span>.<span style=color:#a6e22e>y</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//Distance to mouse
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>mouse_dist</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>distance</span>(<span style=color:#a6e22e>uv</span>, <span style=color:#a6e22e>mouse_uv</span>);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//Draw the texture
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>texture2D</span>(<span style=color:#a6e22e>texture</span>, <span style=color:#a6e22e>uv</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#f92672>!</span><span style=color:#a6e22e>roi</span>){
+</span></span><span style=display:flex><span>        <span style=color:#75715e>//Draw the outline of the glass
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>mouse_dist</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>lens_radius</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.01</span>)
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>vec4</span>(<span style=color:#ae81ff>1.</span>, <span style=color:#ae81ff>1.</span>, <span style=color:#ae81ff>1.</span>, <span style=color:#ae81ff>1.</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//Draw a zoomed-in version of the texture
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>mouse_dist</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>lens_radius</span>)
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>texture2D</span>(<span style=color:#a6e22e>texture</span>, <span style=color:#a6e22e>mouse_uv</span> <span style=color:#f92672>-</span> (<span style=color:#a6e22e>mouse_uv</span> <span style=color:#f92672>-</span> <span style=color:#a6e22e>texcoords2</span>) <span style=color:#f92672>/</span> <span style=color:#a6e22e>magnification</span>);
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></details><details><summary>Shader-mask.frag</summary><div class=markdown-inner><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=display:flex><span><span style=color:#a6e22e>precision</span> <span style=color:#a6e22e>mediump</span> <span style=color:#66d9ef>float</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>sampler2D</span> <span style=color:#a6e22e>texture</span>;
+</span></span><span style=display:flex><span><span style=color:#75715e>// see the emitTexOffset() treegl macro
+</span></span></span><span style=display:flex><span><span style=color:#75715e>// https://github.com/VisualComputing/p5.treegl#macros
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>texOffset</span>;
+</span></span><span style=display:flex><span><span style=color:#75715e>// holds the 3x3 kernel
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>uniform</span> <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>mask</span>[<span style=color:#ae81ff>100</span>];
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>customLen</span>;
+</span></span><span style=display:flex><span><span style=color:#75715e>// we need our interpolated tex coord
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>varying</span> <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>texcoords2</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>bool</span> <span style=color:#a6e22e>roi</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>iResolution</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>iMouse</span>;
+</span></span><span style=display:flex><span><span style=color:#a6e22e>uniform</span> <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>lens_radius</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Sample texel neighbours within the rgba array
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>vec4</span> <span style=color:#a6e22e>rgba</span>[<span style=color:#ae81ff>100</span>];
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>100</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>float</span>(<span style=color:#a6e22e>i</span>) <span style=color:#f92672>==</span> <span style=color:#a6e22e>customLen</span>){
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>rgba</span>[<span style=color:#a6e22e>i</span>] <span style=color:#f92672>=</span> <span style=color:#a6e22e>texture2D</span>(<span style=color:#a6e22e>texture</span>, <span style=color:#a6e22e>texcoords2</span> <span style=color:#f92672>+</span> <span style=color:#a6e22e>vec2</span>(<span style=color:#f92672>-</span><span style=color:#a6e22e>texOffset</span>.<span style=color:#a6e22e>s</span><span style=color:#f92672>*</span><span style=color:#a6e22e>floor</span>(<span style=color:#a6e22e>sqrt</span>(<span style=color:#a6e22e>customLen</span>)<span style=color:#f92672>/</span><span style=color:#ae81ff>2.0</span>) <span style=color:#f92672>+</span> <span style=color:#a6e22e>texOffset</span>.<span style=color:#a6e22e>s</span><span style=color:#f92672>*</span><span style=color:#a6e22e>mod</span>(<span style=color:#66d9ef>float</span>(<span style=color:#a6e22e>i</span>),<span style=color:#a6e22e>sqrt</span>(<span style=color:#a6e22e>customLen</span>)), <span style=color:#f92672>-</span><span style=color:#a6e22e>texOffset</span>.<span style=color:#a6e22e>t</span><span style=color:#f92672>*</span><span style=color:#a6e22e>floor</span>(<span style=color:#a6e22e>sqrt</span>(<span style=color:#a6e22e>customLen</span>)<span style=color:#f92672>/</span><span style=color:#ae81ff>2.0</span>) <span style=color:#f92672>+</span> <span style=color:#a6e22e>texOffset</span>.<span style=color:#a6e22e>t</span><span style=color:#f92672>*</span><span style=color:#a6e22e>floor</span>(<span style=color:#66d9ef>float</span>(<span style=color:#a6e22e>i</span>)<span style=color:#f92672>/</span><span style=color:#a6e22e>sqrt</span>(<span style=color:#a6e22e>customLen</span>))));
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// 3. Apply convolution kernel
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>vec4</span> <span style=color:#a6e22e>convolution</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> (<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>100</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>float</span>(<span style=color:#a6e22e>i</span>) <span style=color:#f92672>==</span> <span style=color:#a6e22e>customLen</span>){
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>break</span>;
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>convolution</span> <span style=color:#f92672>+=</span> <span style=color:#a6e22e>rgba</span>[<span style=color:#a6e22e>i</span>]<span style=color:#f92672>*</span><span style=color:#a6e22e>mask</span>[<span style=color:#a6e22e>i</span>];
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>roi</span>){
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>uv</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>gl_FragCoord</span>.<span style=color:#a6e22e>xy</span> <span style=color:#f92672>/</span> <span style=color:#a6e22e>iResolution</span>.<span style=color:#a6e22e>y</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//at the beginning of the sketch, center the magnifying glass.
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#75715e>//Thanks to FabriceNeyret2 for the suggestion
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>mouse</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>iMouse</span>.<span style=color:#a6e22e>xy</span>;
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>mouse</span> <span style=color:#f92672>==</span> <span style=color:#a6e22e>vec2</span>(<span style=color:#ae81ff>0.0</span>))
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>mouse</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>iResolution</span>.<span style=color:#a6e22e>xy</span> <span style=color:#f92672>/</span> <span style=color:#ae81ff>2.0</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//UV coordinates of mouse
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#a6e22e>vec2</span> <span style=color:#a6e22e>mouse_uv</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>mouse</span> <span style=color:#f92672>/</span> <span style=color:#a6e22e>iResolution</span>.<span style=color:#a6e22e>y</span>;
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//Distance to mouse
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>float</span> <span style=color:#a6e22e>mouse_dist</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>distance</span>(<span style=color:#a6e22e>uv</span>, <span style=color:#a6e22e>mouse_uv</span>);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>texture2D</span>(<span style=color:#a6e22e>texture</span>, <span style=color:#a6e22e>texcoords2</span>);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//Draw the outline of the glass
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>mouse_dist</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>lens_radius</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>0.01</span>)
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>vec4</span>(<span style=color:#ae81ff>1.</span>, <span style=color:#ae81ff>1.</span>, <span style=color:#ae81ff>1.</span>, <span style=color:#ae81ff>1.</span>);
+</span></span><span style=display:flex><span>    
+</span></span><span style=display:flex><span>    <span style=color:#75715e>//Draw a zoomed-in version of the texture
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>mouse_dist</span> <span style=color:#f92672>&lt;</span> <span style=color:#a6e22e>lens_radius</span>)
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>vec4</span>(<span style=color:#a6e22e>convolution</span>.<span style=color:#a6e22e>rgb</span>, <span style=color:#ae81ff>1.0</span>); 
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>else</span> {
+</span></span><span style=display:flex><span><span style=color:#75715e>// 4. Set color from convolution
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#a6e22e>gl_FragColor</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>vec4</span>(<span style=color:#a6e22e>convolution</span>.<span style=color:#a6e22e>rgb</span>, <span style=color:#ae81ff>1.0</span>); 
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>}</span></span></code></pre></div></div></details><h2 id=conclusions-and-future-work>Conclusions and Future work
+<a class=anchor href=#conclusions-and-future-work>#</a></h2><p>A partir del trabajo anterior se puede concluir que:</p><ul><li><p>El uso de máscaras de convolución permite aplicar efectos como desenfoque, nitidez, relieve y detección de bordes, brindando opciones versátiles para ajustar la apariencia de las imágenes según las necesidades del usuario.</p></li><li><p>Las herramientas de luminosidad ofrecen la capacidad de ajustar el brillo y el contraste de las imágenes, permitiendo resaltar detalles y mejorar la visualización.</p></li><li><p>La incorporación de una lupa en el software proporciona una funcionalidad adicional al permitir ampliar secciones específicas de una imagen, facilitando el análisis de detalles minuciosos y el trabajo de precisión.</p></li><li><p>Este tipo de manipulaciones es especialmente útil en campos como el diseño gráfico, la fotografía y la investigación científica, donde la calidad y el análisis detallado de las imágenes son fundamentales.</p></li></ul><p>Como trabajo futuro se pueden aplicar otras máscaras de convolución y otras herramientas de luminosidad a las imagenes, además de dar la posibilidad de poder utilizar imagenes o videos que suba el mismo usuario. Por otro lado también sería bueno explorar otras herramientas de shaders que puedan ser aplicadas a imágenes.</p><div class=book-expand><label><div class="book-expand-head flex justify-between"><span>Referencias</span>
+<span>...</span></div><input type=checkbox class=hidden><div class="book-expand-content markdown-inner"><h2 id=references>References
+<a class=anchor href=#references>#</a></h2><ul><li><a href=https://visualcomputing.github.io/docs/shaders/spatial_coherence/>https://visualcomputing.github.io/docs/shaders/spatial_coherence/</a></li><li><a href=https://www.shadertoy.com/view/wsfBz8>https://www.shadertoy.com/view/wsfBz8</a></li><li><a href=https://en.wikipedia.org/wiki/Region_of_interest>https://en.wikipedia.org/wiki/Region_of_interest</a></li><li><a href=https://en.wikipedia.org/wiki/HSL_and_HSV>https://en.wikipedia.org/wiki/HSL_and_HSV</a></li><li><a href=https://setosa.io/ev/image-kernels/>https://setosa.io/ev/image-kernels/</a></li></ul></div></label></div><a href=/showcase/ class=book-btn>Get Home</a></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/VisualCGroup/showcase/commit/594f71eb4b370ca73e3f78b4b667e0fa4814351a title='Last modified by dzambranob | June 19, 2023' target=_blank rel=noopener><img src=/showcase/svg/calendar.svg class=book-icon alt=Calendar>
+<span>June 19, 2023</span></a></div></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#image-processing>Image processing</a><ul><li><a href=#intro-and-background>Intro and Background</a><ul><li></li></ul></li><li><a href=#code-and-results>Code and Results</a></li><li><a href=#conclusions-and-future-work>Conclusions and Future work</a></li></ul></li></ul></nav></div></aside></main></body></html>
