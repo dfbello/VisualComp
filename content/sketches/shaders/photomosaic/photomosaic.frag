@@ -47,23 +47,9 @@ void main() {
   if (debug) {
     gl_FragColor = key;
   } else {
-    // fontCoord.x :-> offset + x
-    // 1. offset
-    // luma(key.rgb) * cols) : remap luma to [0.0, cols] ∈ R
-    // floor(luma(key.rgb) * cols)) : remap luma to [0.0, cols] ∈ Z
-    // floor(luma(key.rgb) * cols)) / cols : remap luma to [0.0, 1.0] ∈ R
-    // 2. x (1 / cols : quadrille cell width)
-    // fontCoord.x / cols : remap fontCoord.x to [0.0, 1 / cols] ∈ R
-    //vec2 tile = vec2((floor(luma(key.rgb) * cols) + fontCoord.x) / cols, fontCoord.y);
 
     float lumakey = luma(key.rgb);
     float selected = 0.0;
-    /*for( int i = 0 ; i < 18; i += 1)
-    {
-      if((lumas[i]/255.0) < lumakey){
-        selected = float(i);
-      }
-    }*/
 
     bool complete = false;
     for(float j = 0.02; j <= 0.5; j += 0.02){
