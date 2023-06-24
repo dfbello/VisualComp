@@ -60,7 +60,7 @@ El siguiente ejercicio le presenta un color seleccionado aleatoriamente, intente
 
 ## Code and results
 
-{{< p5-iframe sketch="/showcase/sketches/colorPicker.js" width="625" height="425">}}
+{{< p5-iframe sketch="/VisualComp/sketches/colorPicker.js" width="625" height="425">}}
 
 {{< details Code>}}
     let colorRange = [20,230]

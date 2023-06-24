@@ -26,7 +26,7 @@ Dentro de este ejercicio se utilizaron diferentes shaders para representar los d
 * Al mover el mouse en el eje X se modifica la resolución que tiene la textura dentro de la figura, por lo que el patrón se repetirá más veces si el mouse se encuentra más a la derecha.
 {{< /hint >}}
 
-{{< p5-iframe sketch="/showcase/sketches/proceduralTexturing.js" lib1="https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js" width="525" height="525" >}}
+{{< p5-iframe sketch="/VisualComp/sketches/proceduralTexturing.js" lib1="https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js" width="525" height="525" >}}
 
 {{<details Code>}}
 {{<highlight js>}}
@@ -40,13 +40,13 @@ let shapePicker;
 
 function preload() {
 // shader adapted from here: https://thebookofshaders.com/09/
-truchetShader = readShader("/showcase/sketches/shaders/proceduralTexturing/bricks.frag", {
+truchetShader = readShader("/VisualComp/sketches/shaders/proceduralTexturing/bricks.frag", {
     matrices: Tree.NONE, varyings: Tree.NONE,});
-colorShader = readShader("/showcase/sketches/shaders/proceduralTexturing/color.frag", {
+colorShader = readShader("/VisualComp/sketches/shaders/proceduralTexturing/color.frag", {
     matrices: Tree.NONE, varyings: Tree.NONE,});
-plasmaShader = readShader("/showcase/sketches/shaders/proceduralTexturing/plasma.frag", {
+plasmaShader = readShader("/VisualComp/sketches/shaders/proceduralTexturing/plasma.frag", {
     matrices: Tree.NONE, varyings: Tree.NONE,});
-tilesShader = readShader("/showcase/sketches/shaders/proceduralTexturing/tiles.frag", {
+tilesShader = readShader("/VisualComp/sketches/shaders/proceduralTexturing/tiles.frag", {
     matrices: Tree.NONE, varyings: Tree.NONE,});
 }
 

@@ -1,4 +1,4 @@
-baseURL = "https://visualcgroup.github.io/showcase/"
+baseURL = "https://dfbello.github.io/VisualComp/"
 languageCode = "en-us"
 title = "Computación Visual"
 theme = 'book'
@@ -22,7 +22,7 @@ enableGitInfo = true
 
   # Set source repository location.
   # Used for 'Last Modified' and 'Edit this page' links.
-  BookRepo = 'https://github.com/VisualCGroup/showcase'
+  BookRepo = 'https://github.com/dfbello/VisualComp'
 
   # Configure the date format used on the pages
   # - In git information

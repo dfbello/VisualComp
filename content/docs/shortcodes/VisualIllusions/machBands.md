@@ -120,7 +120,7 @@ Dentro de este programa es posible modificar la velocidad de movimiento, la altu
         }
 {{</details>}}
 
-{{< p5-iframe sketch="/showcase/sketches/terrainGenerator.js" width="625" height="625">}}
+{{< p5-iframe sketch="/VisualComp/sketches/terrainGenerator.js" width="625" height="625">}}
 
 La ilusión de realismo dentro de este terreno se debe principalmente al perlin noise, sin embargo también es importante destacar que la ubicación de la cámara y el tamaño de la grilla son temas que no se deben dejar de lado a la hora de hacer esta generación, debido a que puede quedarse muy corto o dar la percepción de que las montañas se generan de la nada. 
 

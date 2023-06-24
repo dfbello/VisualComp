@@ -42,7 +42,7 @@ createCanvas(400, 400);
 
 En este caso es posible modificar la velocidad a la que se mueve el segundo grupo de circulos dentro del canvas.
 
-{{< p5-iframe sketch="/showcase/sketches/moirePattern1.js" width="425" height="425">}}
+{{< p5-iframe sketch="/VisualComp/sketches/moirePattern1.js" width="425" height="425">}}
 
 {{<details Code>}}
 let xVar = 200
@@ -118,7 +118,7 @@ createCanvas(500, 500);
 
 {{</details>}}
 
-{{< p5-iframe sketch="/showcase/sketches/moirePattern3.js" width="525" height="525">}}
+{{< p5-iframe sketch="/VisualComp/sketches/moirePattern3.js" width="525" height="525">}}
 
 {{<details Code>}}
 let angle = 0;
@@ -136,7 +136,7 @@ strokeWeight(3);
 
 #### Patrón de líneas espaciadas
 
-{{< p5-iframe sketch="/showcase/sketches/moirePattern4.js" width="600" height="600" >}}
+{{< p5-iframe sketch="/VisualComp/sketches/moirePattern4.js" width="600" height="600" >}}
 
 {{< details Code>}}
 
@@ -168,7 +168,7 @@ El siguiente kinegrama se genera a partir de una imágen preestablecida que se m
 {{<details relevantCode open>}}
 
         function preload() {
-                img = loadImage("/showcase/sketches/assets/kinegram.png");
+                img = loadImage("/VisualComp/sketches/assets/kinegram.png");
         }
         function setup() {
                 createCanvas(400, 420);
@@ -189,7 +189,7 @@ El siguiente kinegrama se genera a partir de una imágen preestablecida que se m
 
 Esta imagen está hecha aparte y no se calcula dentro del programa, sin embargo es posible realizar un programa que calcule la imagen objetivo a partir de un gif o una serie de imagenes que se quieran visualizar de esta manera.
 
-{{< p5-iframe sketch="/showcase/sketches/kinegram.js" width="425" height="445">}}
+{{< p5-iframe sketch="/VisualComp/sketches/kinegram.js" width="425" height="445">}}
 
 {{<details Code>}}
         
@@ -200,7 +200,7 @@ Esta imagen está hecha aparte y no se calcula dentro del programa, sin embargo 
         let y = 0;
 
                 function preload() {
-                    img = loadImage("/showcase/sketches/assets/kinegram.png");
+                    img = loadImage("/VisualComp/sketches/assets/kinegram.png");
                 }
 
                 function setup() {
@@ -232,7 +232,7 @@ El dithering es una forma intencional de aplicar ruido, usada para aleatorizar e
 
 En el procesamiento de imágenes digitales es usado para generar profundidad de color en situaciones donde la paleta de colores es limitada. Los colores no existentes en la paleta se aproximan por una difusión de píxeles dentro de la gama de colores disponibles. El siguiente ejemplo muestra como se produce un amarillo a partir de rojo y verde. Use el slider parra hacer la rejilla mas pequeña, donde se empieza a apreciar el efecto.
 
-{{< p5-iframe sketch="/showcase/sketches/dithering.js" width="625" height="625">}}
+{{< p5-iframe sketch="/VisualComp/sketches/dithering.js" width="625" height="625">}}
 
 {{<details Code>}}
 
@@ -289,7 +289,7 @@ Se debe tener en cuenta que este histograma representa la cantidad de pixeles qu
 
 Cada uno de los diferentes kernels se pude escoger con el desplegable que se encuentra a la izquierda, mientras que se necesitan presionar las teclas "+" o "-" para cambiar el brillo de la imagen en cuestión.
 
-{{< p5-iframe sketch="/showcase/sketches/kernelImages.js" width="625" height="625">}}
+{{< p5-iframe sketch="/VisualComp/sketches/kernelImages.js" width="625" height="625">}}
 
 ## Conclusions and future work
 

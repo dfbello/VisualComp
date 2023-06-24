@@ -105,7 +105,7 @@ Dentro del siguiente ejercicio se visualiza un movimiento de unos rectángulos q
     }
 {{</details>}}
 
-{{< p5-iframe sketch="/showcase/sketches/stepVisualIllusions.js" width="625" height="325" >}}
+{{< p5-iframe sketch="/VisualComp/sketches/stepVisualIllusions.js" width="625" height="325" >}}
 
 Este efecto es causado principalmente por el efecto de contraste, el cual se refiere a las diferencias de luminancia tanto del fondo como de los objetos móviles, de manera que esta diferencia hace que el ojo perciba que cada objeto se mantiene en el contraste que mejor le queda del fondo, haciendo parecer que se mueva por pasos. Esto también permite ver la amplitud del movimiento y depende de los códigos visuales para el movimiento que tiene el cerebro.
 
@@ -208,7 +208,7 @@ Por esto mismo en este caso es necesario que los elementos móviles tengan contr
     }
 {{</details>}}
 
-{{< p5-iframe sketch="/showcase/sketches/yellow-inducing.js" width="420" height="225" >}}
+{{< p5-iframe sketch="/VisualComp/sketches/yellow-inducing.js" width="420" height="225" >}}
 
 La ilusión yellow-inducing es una ilusión de color por asimilación y contraste.
 

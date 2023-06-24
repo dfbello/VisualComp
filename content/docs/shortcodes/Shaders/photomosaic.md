@@ -19,17 +19,17 @@ La imagen (o video) objetivo y la paleta de imágenes es definida desde el sketc
 {{<highlight js>}}
 function preload() {
   //Target video and image
-  image_src = loadImage("/showcase/sketches/assets/f1cars/jordan.jpg");
-  video_src = createVideo(["/showcase/sketches/assets/f1cars/imola.mp4"]);
+  image_src = loadImage("/VisualComp/sketches/assets/f1cars/jordan.jpg");
+  video_src = createVideo(["/VisualComp/sketches/assets/f1cars/imola.mp4"]);
   video_src.hide();
-  mosaic = readShader("/showcase/sketches/shaders/photomosaic/photomosaic.frag");
+  mosaic = readShader("/VisualComp/sketches/shaders/photomosaic/photomosaic.frag");
   //Image Palette
   p = [];
   for (let i = 1; i <= 36; i++) {
     if (i.toString().length == 1) {
-      p.push(loadImage(`/showcase/sketches/assets/f1cars/00${i}.jpg`));
+      p.push(loadImage(`/VisualComp/sketches/assets/f1cars/00${i}.jpg`));
     } else {
-      p.push(loadImage(`/showcase/sketches/assets/f1cars/0${i}.jpg`));
+      p.push(loadImage(`/VisualComp/sketches/assets/f1cars/0${i}.jpg`));
     }
   }
 }
@@ -54,7 +54,7 @@ video_on.changed(() => {
 * El slider modifica la resolución que tiene el objetivo.
 {{< /hint >}}
 
-{{< p5-iframe sketch="/showcase/sketches/photomosaic.js" lib1="/showcase/sketches/lib/p5.shaderbox.js" lib2="/showcase/sketches/lib/p5.quadrille.js" width="675" height="675" >}}
+{{< p5-iframe sketch="/VisualComp/sketches/photomosaic.js" lib1="/VisualComp/sketches/lib/p5.shaderbox.js" lib2="/VisualComp/sketches/lib/p5.quadrille.js" width="675" height="675" >}}
 
 {{<hint warning>}}
 El rendimiento del vídeo puede variar según las especificaciones de su equipo.
@@ -82,17 +82,17 @@ const SAMPLE_RES = 100;
 
 function preload() {
   //Target video and image
-  image_src = loadImage("/showcase/sketches/assets/f1cars/jordan.jpg");
-  video_src = createVideo(["/showcase/sketches/assets/f1cars/imola.mp4"]);
+  image_src = loadImage("/VisualComp/sketches/assets/f1cars/jordan.jpg");
+  video_src = createVideo(["/VisualComp/sketches/assets/f1cars/imola.mp4"]);
   video_src.hide();
-  mosaic = readShader("/showcase/sketches/shaders/photomosaic/photomosaic.frag");
+  mosaic = readShader("/VisualComp/sketches/shaders/photomosaic/photomosaic.frag");
   //Image Palette
   p = [];
   for (let i = 1; i <= 36; i++) {
     if (i.toString().length == 1) {
-      p.push(loadImage(`/showcase/sketches/assets/f1cars/00${i}.jpg`));
+      p.push(loadImage(`/VisualComp/sketches/assets/f1cars/00${i}.jpg`));
     } else {
-      p.push(loadImage(`/showcase/sketches/assets/f1cars/0${i}.jpg`));
+      p.push(loadImage(`/VisualComp/sketches/assets/f1cars/0${i}.jpg`));
     }
   }
 }

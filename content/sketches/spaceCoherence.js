@@ -9,10 +9,10 @@ let photoA;
 
 function preload() {
   photoA = int(random(1, 5));
-  image_src = loadImage(`/showcase/sketches/assets/spacePhotos/photo${photoA}.jpg`);
-  video_src = createVideo(['/showcase/sketches/assets/mapache.webm']);
+  image_src = loadImage(`/VisualComp/sketches/assets/spacePhotos/photo${photoA}.jpg`);
+  video_src = createVideo(['/VisualComp/sketches/assets/mapache.webm']);
   video_src.hide();
-  mosaic = readShader('/showcase/sketches/shaders/spaceCoherence/spaceCoherence.frag',
+  mosaic = readShader('/VisualComp/sketches/shaders/spaceCoherence/spaceCoherence.frag',
            { varyings: Tree.texcoords2 });
 }
 
@@ -35,19 +35,19 @@ function setup() {
   photoSelect.selected(`Photo${photoA}`)
   photoSelect.changed(() => {
     if (photoSelect.value() == 'Photo1'){
-      image_src = loadImage(`/showcase/sketches/assets/spacePhotos/photo1.jpg`);
+      image_src = loadImage(`/VisualComp/sketches/assets/spacePhotos/photo1.jpg`);
       mosaic.setUniform('source', image_src);
     }
     else if (photoSelect.value() == 'Photo2'){
-      image_src = loadImage(`/showcase/sketches/assets/spacePhotos/photo2.jpg`);
+      image_src = loadImage(`/VisualComp/sketches/assets/spacePhotos/photo2.jpg`);
       mosaic.setUniform('source', image_src);
     }
     else if (photoSelect.value() == 'Photo3'){
-      image_src = loadImage(`/showcase/sketches/assets/spacePhotos/photo3.jpg`);
+      image_src = loadImage(`/VisualComp/sketches/assets/spacePhotos/photo3.jpg`);
       mosaic.setUniform('source', image_src);
     }
      else if (photoSelect.value() == 'Photo4'){
-      image_src = loadImage(`/showcase/sketches/assets/spacePhotos/photo4.jpg`);
+      image_src = loadImage(`/VisualComp/sketches/assets/spacePhotos/photo4.jpg`);
       mosaic.setUniform('source', image_src);
     }
   });

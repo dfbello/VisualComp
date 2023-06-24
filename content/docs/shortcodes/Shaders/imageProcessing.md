@@ -219,7 +219,7 @@ Por último para las herramientas de luminosidad de color, se hace un cambio a c
 * Por último se presentan dos *sliders*, el primero es para modificar el tamaño del circulo que define el magnifier o la región de interés. Y el segundo sirve para modificar el ampliamiento a la imagen en el caso de que esté seleccionada la opción de Magnifier
 {{< /hint >}}
 
-{{< p5-iframe sketch="/showcase/sketches/imgProcessing.js" lib1="https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js" width="625" height="625" >}}
+{{< p5-iframe sketch="/VisualComp/sketches/imgProcessing.js" lib1="https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js" width="625" height="625" >}}
 
 {{<details Code>}}
 {{<highlight js>}}
@@ -237,15 +237,15 @@ let lenRadius;
 let magnification;
 
 function preload() {
-maskShader = readShader('/showcase/sketches/shaders/imgProcessing/mask.frag',
+maskShader = readShader('/VisualComp/sketches/shaders/imgProcessing/mask.frag',
     { varyings: Tree.texcoords2 });
-lumaShader = readShader('/showcase/sketches/shaders/imgProcessing/bright.frag',
+lumaShader = readShader('/VisualComp/sketches/shaders/imgProcessing/bright.frag',
     { varyings: Tree.texcoords2 });
-lensShader = readShader('/showcase/sketches/shaders/imgProcessing/lens.frag',
+lensShader = readShader('/VisualComp/sketches/shaders/imgProcessing/lens.frag',
     { varyings: Tree.texcoords2 });
-video_src = createVideo(['/showcase/sketches/assets/mapache.webm']);
+video_src = createVideo(['/VisualComp/sketches/assets/mapache.webm']);
 video_src.hide();
-img_src = loadImage('/showcase/sketches/assets/aiImage1.jpg');
+img_src = loadImage('/VisualComp/sketches/assets/aiImage1.jpg');
 src = img_src;
 }
 

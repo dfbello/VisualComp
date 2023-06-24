@@ -26,7 +26,7 @@ El ejercicio se implementó utilizando el sketch y el shader proporcionado en [S
 - El segundo *select* se usa para escoger la imagen que se va a mostrar, existen 4 opciones.
 {{< /hint >}}
 
-{{< p5-iframe sketch="/showcase/sketches/spaceCoherence.js" lib1="https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js" width="625" height="625" >}}
+{{< p5-iframe sketch="/VisualComp/sketches/spaceCoherence.js" lib1="https://cdn.jsdelivr.net/gh/VisualComputing/p5.treegl/p5.treegl.js" width="625" height="625" >}}
 
 {{<details Code>}}
 {{<highlight js>}}
@@ -41,10 +41,10 @@ let photoA;
 
 function preload() {
 photoA = int(random(1, 5));
-image_src = loadImage(`/showcase/sketches/assets/spacePhotos/photo${photoA}.jpg`);
-video_src = createVideo(['/showcase/sketches/assets/mapache.webm']);
+image_src = loadImage(`/VisualComp/sketches/assets/spacePhotos/photo${photoA}.jpg`);
+video_src = createVideo(['/VisualComp/sketches/assets/mapache.webm']);
 video_src.hide();
-mosaic = readShader('/showcase/sketches/shaders/spaceCoherence/spaceCoherence.frag',
+mosaic = readShader('/VisualComp/sketches/shaders/spaceCoherence/spaceCoherence.frag',
         { varyings: Tree.texcoords2 });
 }
 
@@ -67,19 +67,19 @@ photoSelect.option('Photo4');
 photoSelect.selected(`Photo${photoA}`)
 photoSelect.changed(() => {
     if (photoSelect.value() == 'Photo1'){
-    image_src = loadImage(`/showcase/sketches/assets/spacePhotos/photo1.jpg`);
+    image_src = loadImage(`/VisualComp/sketches/assets/spacePhotos/photo1.jpg`);
     mosaic.setUniform('source', image_src);
     }
     else if (photoSelect.value() == 'Photo2'){
-    image_src = loadImage(`/showcase/sketches/assets/spacePhotos/photo2.jpg`);
+    image_src = loadImage(`/VisualComp/sketches/assets/spacePhotos/photo2.jpg`);
     mosaic.setUniform('source', image_src);
     }
     else if (photoSelect.value() == 'Photo3'){
-    image_src = loadImage(`/showcase/sketches/assets/spacePhotos/photo3.jpg`);
+    image_src = loadImage(`/VisualComp/sketches/assets/spacePhotos/photo3.jpg`);
     mosaic.setUniform('source', image_src);
     }
     else if (photoSelect.value() == 'Photo4'){
-    image_src = loadImage(`/showcase/sketches/assets/spacePhotos/photo4.jpg`);
+    image_src = loadImage(`/VisualComp/sketches/assets/spacePhotos/photo4.jpg`);
     mosaic.setUniform('source', image_src);
     }
 });
