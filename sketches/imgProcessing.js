@@ -12,15 +12,15 @@ let lenRadius;
 let magnification;
 
 function preload() {
-  maskShader = readShader('/showcase/sketches/shaders/imgProcessing/mask.frag',
+  maskShader = readShader('/VisualComp/sketches/shaders/imgProcessing/mask.frag',
     { varyings: Tree.texcoords2 });
-  lumaShader = readShader('/showcase/sketches/shaders/imgProcessing/bright.frag',
+  lumaShader = readShader('/VisualComp/sketches/shaders/imgProcessing/bright.frag',
     { varyings: Tree.texcoords2 });
-  lensShader = readShader('/showcase/sketches/shaders/imgProcessing/lens.frag',
+  lensShader = readShader('/VisualComp/sketches/shaders/imgProcessing/lens.frag',
     { varyings: Tree.texcoords2 });
-  video_src = createVideo(['/showcase/sketches/assets/mapache.webm']);
+  video_src = createVideo(['/VisualComp/sketches/assets/mapache.webm']);
   video_src.hide();
-  img_src = loadImage('/showcase/sketches/assets/aiImage1.jpg');
+  img_src = loadImage('/VisualComp/sketches/assets/aiImage1.jpg');
   src = img_src;
 }
 

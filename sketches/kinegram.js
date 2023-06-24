@@ -5,7 +5,7 @@ let spacing = 1.2;
 let y = 0;
 
 function preload() {
-    img = loadImage("/showcase/sketches/assets/kinegram.png");
+    img = loadImage("/VisualComp/sketches/assets/kinegram.png");
 }
 
 function setup() {
